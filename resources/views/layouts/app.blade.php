@@ -23,7 +23,7 @@
 <body>
 <!--nav menu -->
 <section>
-    <nav class="navbar navbar-default">
+    <nav style="margin-bottom: 0px" class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -38,16 +38,12 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-left">
-                    <!--
-                    <li <?php if(Route::getCurrentRoute()->getPath() == '/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">Главная<span class="sr-only"></span></a></li>
-                    <li <?php if(Route::getCurrentRoute()->getPath() == 'auth/login'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('auth/login')}}">Войти<span class="sr-only"></span></a></li>
-                    <li <?php if(Route::getCurrentRoute()->getPath() == 'auth/registration'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('auth/registration')}}">Регистрация<span class="sr-only"></span></a></li>
-                    -->
-                </ul>
-                <ul class="nav navbar-top-links navbar-right language_bar_chooser flip">
+                <ul class="nav navbar-nav navbar-right">
+                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.header.regtoll')<span class="sr-only"></span></a></li>
+                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/toll/buy'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('toll/buy')}}">@lang('site/frontpage/site.header.buytoll')<span class="sr-only"></span></a></li>
+                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/auth/login'){ echo 'class=active';} else { echo '';} ?>><a class="btn btn-primary t-w" href="{{ url('auth/login')}}">@lang('site/frontpage/site.header.login')<span class="sr-only"></span></a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-language"></i> {{ trans('Language') }} <i class="fa fa-caret-down"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-language"></i> @lang('site/frontpage/site.header.language') <i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu" role="menu">
                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                 <li>
@@ -58,9 +54,7 @@
                             @endforeach
                         </ul>
                     </li>
-
                 </ul>
-
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
@@ -70,6 +64,32 @@
 @show
 @yield('content')
 
+
+<!--footer -->
+    <nav id="footer-nav-v" class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                <ul class="nav navbar-nav navbar-left">
+                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.about')<span class="sr-only"></span></a></li>
+                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.privacy')<span class="sr-only"></span></a></li>
+                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.terms')<span class="sr-only"></span></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+<!-- ./footer-->
 
 
 

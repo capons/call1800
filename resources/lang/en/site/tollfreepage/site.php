@@ -1,8 +1,11 @@
 <?php
 
 return [
-    'home' => 'Home',
-    'login' => 'Login',
+    'tollbuy' => [
+        'test' => 'buy toll free number',
+        'mainpage' => 'Main'
+    ],
+    'test' => 'buy toll free number',
     'sign_up' => 'Sign up',
     'admin_panel' => 'Admin Panel',
     'logout' => 'Logout',

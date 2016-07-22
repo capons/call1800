@@ -52,10 +52,9 @@ return [
     |
     */
 
-    'locale' => 'en',      //name if localization from laravellocalization
+    'locale' => 'en',      //name if localization from laravellocalization //default language
     'locales' => [
         'en' => 'English', //sett localization alias
-        //'ru' => 'Hebrew'
         'ru' => 'Russian'
     ],
 
