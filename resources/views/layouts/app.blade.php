@@ -39,7 +39,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.header.regtoll')<span class="sr-only"></span></a></li>
+                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/toll/reg'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('toll/reg')}}">@lang('site/frontpage/site.header.regtoll')<span class="sr-only"></span></a></li>
                     <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/toll/buy'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('toll/buy')}}">@lang('site/frontpage/site.header.buytoll')<span class="sr-only"></span></a></li>
                     <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/auth/login'){ echo 'class=active';} else { echo '';} ?>><a class="btn btn-primary t-w" href="{{ url('auth/login')}}">@lang('site/frontpage/site.header.login')<span class="sr-only"></span></a></li>
                     <li class="dropdown">
@@ -66,29 +66,32 @@
 
 
 <!--footer -->
-    <nav id="footer-nav-v" class="navbar navbar-default">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+    <footer class="footer-container">
+        <nav id="footer-nav-v" class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 
-            </div>
+                </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-                <ul class="nav navbar-nav navbar-left">
-                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.about')<span class="sr-only"></span></a></li>
-                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.privacy')<span class="sr-only"></span></a></li>
-                    <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.terms')<span class="sr-only"></span></a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.about')<span class="sr-only"></span></a></li>
+                        <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.privacy')<span class="sr-only"></span></a></li>
+                        <li <?php if(Route::getCurrentRoute()->getPath() == LaravelLocalization::setLocale().'/'){ echo 'class=active';} else { echo '';} ?>><a href="{{ url('/')}}">@lang('site/frontpage/site.footer.terms')<span class="sr-only"></span></a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </footer>
+
 <!-- ./footer-->
 
 

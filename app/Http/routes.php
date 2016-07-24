@@ -11,14 +11,10 @@
 |
 */
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
 
 
 
+/* Laravel localization route group*/
 Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect','localizationRedirect', 'localize']], function() {
     include('routes/front.routes.php');
     include ('routes/tollfree.routes.php');

@@ -1,4 +1,6 @@
-
+body {
+    min-width: 850px;
+}
 .t-w {
     color:white !important;
 }
@@ -26,9 +28,7 @@
 
 /*content*/
 #search-m-c {
-    position: absolute;
-    left: 0px;
-    top: 20%;
+    margin-top: 5%;
 }
 .front-logo-t-c {
     text-align: center;
@@ -57,11 +57,15 @@
 /* ./content*/
 
 /*footer*/
-#footer-nav-v {
-    margin-bottom: 0px;
-    position: absolute;
+.footer-container {
+    position: fixed;
+    left: 0px;
     bottom: 0px;
     width: 100%;
+}
+#footer-nav-v {
+    margin-bottom: 0px;
+
 }
 /* ./*/
 

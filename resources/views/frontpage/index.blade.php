@@ -9,6 +9,24 @@
 @section('content')
     <div class="container-fluid">
 
+        <div class="row"> <!--error display block -->
+            <div class="col-xs-12">
+                <div class="col-xs-4 al-center">
+                    <!-- Display Validation Errors -->
+                    @include('common.errors')
+                            <!--Display User information -->
+                    @if(Session::has('user-info'))
+                        <div class="alert-box success">
+                            <h2 style="text-align: center">{{ Session::get('user-info') }}</h2>
+
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+        </div>
+
+
         <div id="search-m-c" class="col-xs-12">
             <div  class="col-lg-5 al-center">
                 <div class="col-xs-12">
