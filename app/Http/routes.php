@@ -14,10 +14,14 @@
 
 
 
-/* Laravel localization route group*/
+/*  default route group*/
 Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect','localizationRedirect', 'localize']], function() {
     include('routes/front.routes.php');
-    include ('routes/tollfree.routes.php');
+   // include ('routes/tollfree.routes.php');
+});
 
-    
+/*tollfree route group*/
+Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'auth','localeSessionRedirect','localizationRedirect', 'localize']], function() {
+
+     include ('routes/tollfree.routes.php');
 });

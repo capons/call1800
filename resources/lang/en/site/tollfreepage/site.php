@@ -7,7 +7,9 @@ return [
     ],
     'tollreg' => [
         'regform' => [
+            'category' => 'Category',
             'company' => 'Company Name',
+            'desc' => 'Company Description',
             'number' => 'Toll Free Number',
             'address' => 'Address',
             'city' => 'City',

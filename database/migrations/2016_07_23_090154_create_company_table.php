@@ -18,6 +18,8 @@ class CreateCompanyTable extends Migration
             $table->increments('id');
 
             $table->string('name',128);
+            
+            $table->string('description',256)->nullable(); //+
 
             $table->integer('number')->length(20)->unsigned();
 

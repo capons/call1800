@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 
 class RegistertollController extends Controller
 {
-    protected $redirectTo = '/'; //redirect path after sign in
+    protected $redirectTo = '/success'; //redirect path after sign in
     /**
      * @param array $data
      * @return mixed
@@ -27,6 +27,7 @@ class RegistertollController extends Controller
         return Validator::make($data, [   //validation registration form
             'company-name' => 'required|min:3|max:50',
             'toll-number' => 'required|min:3|max:50',
+            'checkbox' => 'required'
         ],$messages);
     }
     /**
@@ -37,6 +38,7 @@ class RegistertollController extends Controller
     public function index()
     {
         return view('tollfree.regtoll');
+
     }
 
     /**
@@ -57,6 +59,7 @@ class RegistertollController extends Controller
      */
     public function store(Request $request)
     {
+      
 
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
@@ -83,7 +86,7 @@ class RegistertollController extends Controller
      * @return mixed
      */
     protected function add(array $data){ //save data to database
-        $new_company = Company::create(['name' => $data['company-name'],'number' => $data['toll-number'],'address' => $data['address'],'city' => $data['city'],'state' => $data['state'],'country' => $data['country'],'zipcode' => $data['zip']]);
+        $new_company = Company::create(['name' => $data['company-name'], 'description' => $data['company-desc'],'number' => $data['toll-number'],'address' => $data['address'],'city' => $data['city'],'state' => $data['state'],'country' => $data['country'],'zipcode' => $data['zip']]);
         return $new_company;
 
     }

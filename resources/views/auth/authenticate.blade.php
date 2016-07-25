@@ -6,50 +6,52 @@
 @stop
 
 @section('content')
-    <div class="col-xs-12">
-        <a class="btn btn-primary t-w" href="{{ url('/')}}">@lang('site/tollfreepage/site.tollbuy.mainpage')<span class="sr-only"></span></a>
-    </div>
-    <div class="col-xs-12">
-        <div style="float: none;margin: 0 auto" class="col-xs-4">
-            <form method="POST" action="{{ url('/auth/login')}}">
-                {!! csrf_field() !!}
-
-                <div>
-                    @lang('site/authpage/site.login.email')
-                    <input type="text" name="r_email" value="">
+    <div class="main-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 login-box">
+                    <div class="panel panel-default">
+                        <div class="panel-intro text-center">
+                            <h2 class="logo-title">
+                                <!-- Original Logo will be placed here  -->
+                                <span class="logo-icon"><i class="icon icon-search-1 ln-shadow-logo shape-0"></i> </span> BOOT<span>CLASSIFIED </span>
+                            </h2>
+                        </div>
+                        <div class="panel-body">
+                            <form action="{{action('Auth\AuthController@postLogin')}}" method="post" role="form">
+                                <div class="form-group">
+                                    <label for="sender-email" class="control-label">Username:</label>
+                                    <div class="input-icon"><i class="icon-user fa"></i>
+                                        <input id="sender-email" type="text" placeholder="Username" class="form-control email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-pass" class="control-label">Password:</label>
+                                    <div class="input-icon"><i class="icon-lock fa"></i>
+                                        <input type="password" class="form-control" placeholder="Password" id="user-pass">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <a href="account-home.html" class="btn btn-primary  btn-block">Submit</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="checkbox pull-left">
+                                <label> <input type="checkbox" value="1" name="remember" id="remember"> Keep me logged in</label>
+                            </div>
+                            <p class="text-center pull-right"><a href="forgot-password.html"> Lost your password? </a></p>
+                            <div style=" clear:both"></div>
+                        </div>
+                    </div>
+                    <div class="login-box-btm text-center">
+                        <p> Don't have an account? <br>
+                            <a href="{{url('auth/register')}}"><strong>Sign Up !</strong> </a></p>
+                    </div>
                 </div>
-
-                <div>
-                    @lang('site/authpage/site.login.pass')
-                    <input type="password" name="r_password" id="password">
-                </div>
-
-                <div>
-                    <input type="checkbox" name="remember"> @lang('site/authpage/site.login.remember')
-                </div>
-
-                <div>
-                    <button type="submit"> @lang('site/authpage/site.login.login')</button>
-                </div>
-            </form>
+            </div>
         </div>
-
     </div>
-
-
-    <div class="row">
-        <div style="float: none;margin: 0 auto" class="col-xs-6">
-            <!-- Display Validation Errors -->
-            @include('common.errors')
-
-                    <!--Display User information -->
-            @if(Session::has('user-info'))
-                <div class="alert-box success">
-                    <h2 style="text-align: center">{{ Session::get('user-info') }}</h2>
-
-                </div>
-            @endif
-        </div>
-    </div>
+    <!-- /.main-container -->
 
 @stop
