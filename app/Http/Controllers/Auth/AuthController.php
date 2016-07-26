@@ -7,13 +7,20 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
 
 class AuthController extends Controller
 {
-    protected $redirectTo = '/'; //redirect path after sign in
-    private $last_id = '';  //put into variable last insert id
-    private $hash = ''; //put into variable user hash to confirm user account
-    private $login_err_m = ''; //login error message
+    protected $redirectTo = '/';  //redirect path after sign in
+    private $last_id = '';        //put into variable last insert id
+    private $hash = '';           // user hash to confirm user account
+    private $login_err_m = '';    //login error message
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -46,17 +53,25 @@ class AuthController extends Controller
     {
         $messages = [ //validation message
             'f_name.required' => 'Name is required',
+            'l_name.required' => 'Last Name is required',
             'email.required' => 'Email is required',
-            'password.required' => 'Password is required',
-            'category_id.required' => 'Category is required',
-            'terms.required' => 'Terms and Condition is required',
+            'f_number.required' => 'Number is required',
+            'u_address.required' => 'Address is required',
+            'u_city.required' => 'City is required',
+            'u_state.required' => 'State is required',
+            'u_country.required' => 'Country is required',
+            'u_pass.required' => 'Password is required',
         ];
         return Validator::make($data, [   //validation registration form
-            'f_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6',
-            'category_id'=> 'required',
-            'terms' => 'required'
+            'f_name' => 'required|max:50',
+            'l_name' => 'required|max:50',
+            'email' => 'required|email|max:100|unique:users',
+            'f_number' => 'required|max:100',
+            'u_address' => 'required|max:100',
+            'u_city' => 'required|max:100',
+            'u_state' => 'required|max:100',
+            'u_country' => 'required|max:100',
+            'u_pass' => 'required|max:100|min:5',
         ],$messages);
     }
 
@@ -72,19 +87,29 @@ class AuthController extends Controller
                 $request, $validator
             );
         }
-        Auth::login($this->create($request->all()));
+        $auth = Auth::login($this->create($request->all()));
+
+        if ($auth !== null) //if query false
+        {
+
+            // if query false log all data here
+            return redirect('auth/register');
+            die();
+        }
+
         //$this->last_id -> return last database insert id
         $user = User::findOrFail($this->last_id); //user object
+
         $link_to_active = Config::get('app.url').'/auth/active'.'?hash='.$this->hash.'&id='.$this->last_id; //send variable to mail view
         Mail::send('mail.index', ['link' => $link_to_active], function ($m) use ($user) {
             $m->from('hello@app.com', 'Your Application');
-            $m->to(env('admin_email'), $user->name)->subject(Config::get('app.url').'/auth/active' . '?hash=' . $this->hash . '&id=' . $this->last_id . ''); //send to email link to activate account
+            $m->to($user->email, $user->name)->subject(Config::get('app.url').'/auth/active' . '?hash=' . $this->hash . '&id=' . $this->last_id . ''); //send to email link to activate account
         });
-        Session::flash('user-info', 'Your registration has been successfully submitted
-									for approval and you will be notified via email when live.'); //send message to user via flash data
+        Session::flash('user-info', Lang::get('site/authpage/site.registration.success_reg')); //send message to user via flash data
         //return redirect($this->redirectPath());                         //redirect controller set in protected $redirectTo = '/';
         //return redirect('auth/register');
-        return redirect('/');
+        //return redirect('/');
+        return redirect('/success');
     }
 
     /**
@@ -93,26 +118,28 @@ class AuthController extends Controller
      */
     public function postActivate(Request $request) //activate user account
     {
+        if(! count(Input::all())){ //if empty request input redirect
+            return redirect('/'); //redirect to main page
+        }
         Validator::make($request->all(), [
             'id' => 'integer'
         ]);
-        $hash = Input::get('hash'); //user data id
-        $id = Input::get('id');
-        //$find_user = User::where('id',$id)->where('hash',$hash)->get();
-        //$find_user = User::where('id',$id)->where('hash',$hash)->get(); //find user with correct id and hash
-        $find_user = User::where('id', $id)->where('hash',$hash)->get();
-        if(!$find_user->isEmpty()){ //if result true
-            $values=array('active'=>1,'access'=>1,'hash'=>bcrypt(str_random(40))); //update data -> new hash to confirm that we active user acount and link work only once
+        $hash = Input::get('hash'); //user hash
+        $id = Input::get('id');     //user id
+        $find_user = User::where('id', $id)->where('hash',$hash)->first();  //find user with correct id and hash
+
+        if(!empty($find_user)){ //if result true
+            $values=array('active'=>1,'hash'=>bcrypt(str_random(40))); //update data -> new hash to confirm that we active user acount and link work only once
             User::where('id',$id)->where('hash',$hash)->update($values);
-            $user = User::findOrFail($id);
-            Mail::send('mail.index', ['view_variable' => 'Your account is active'], function ($m) use ($user) { //send mail to user -> account is active
-                $m->from(env('admin_email'), 'Your Application'); //env blobal variable create in .env file
-                $m->to($user->email, $user->f_name)->subject('Congratulations your account is activated'); //send to user email info that we activate user account
-            });
-            return redirect('/'); //redirect to main page
-        } else {
-            Session::flash('user-info', 'Invalid link');
-            return redirect('/'); //redirect to main page
+            //$user = User::findOrFail($id);
+            //Session::flash('user-info', Lang::get('message.active_account')); //send message to user via flash data
+            //return redirect('/'); //redirect to main page
+           // return view('auth.reg_confirm',['user_info' => Lang::get('message.active_account')]);
+            Session::flash('user-info', Lang::get('site/authpage/site.registration.success_active')); //send message to user via flash data
+            return redirect('/success');
+        } else { //if second time click on active user link display error
+            Session::flash('user-info', Lang::get('site/error.link_error'));
+            return redirect('/success'); //redirect to main page
         }
     }
 
@@ -124,10 +151,21 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $this->hash = bcrypt($data['f_name']); //put user account activate hash into variable
+        $save_data = User::create([
+            'name' => $data['f_name'],
+            'last_name' => $data['l_name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'phone_number' => $data['f_number'],
+            'country' => $data['u_country'],
+            'state' => $data['u_state'],
+            'city' => $data['u_city'],
+            'address' => $data['u_address'],
+            'password' => bcrypt($data['u_pass']),
+            'access' => 1,
+            'hash' => $this->hash
         ]);
+        $this->last_id = $save_data->id;    //last user save data id from database
+        return $save_data;
     }
 }

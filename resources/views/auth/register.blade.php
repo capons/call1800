@@ -17,33 +17,25 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <form action="{{action('Auth\AuthController@postRegister')}}" method="post" class="form-horizontal">
-                                    <fieldset>
-                                        <div class="form-group required">
-                                            <label class="col-md-4 control-label">You are a <sup>*</sup></label>
+                                    <div class="row"> <!--display form error -->
+                                        <div class="col-xs-12">
+                                            <div class="col-xs-4 al-center">
 
-                                            <div class="col-md-6">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1"
-                                                               value="option1" checked>
-                                                        Professional </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2"
-                                                               value="option2">
-                                                        Individual </label>
-                                                </div>
+                                                <!-- Display Validation Errors -->
+                                                @include('common.errors')
+                                                        <!--Display User information -->
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <fieldset>
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <!-- Text input-->
                                         <div class="form-group required">
                                             <label class="col-md-4 control-label">First Name <sup>*</sup></label>
 
                                             <div class="col-md-6">
-                                                <input name="" placeholder="First Name" class="form-control input-md"
-                                                       required="" type="text">
+                                                <input name="f_name" placeholder="First Name" class="form-control input-md" value="Name" required type="text">
                                             </div>
                                         </div>
 
@@ -52,90 +44,91 @@
                                             <label class="col-md-4 control-label">Last Name <sup>*</sup></label>
 
                                             <div class="col-md-6">
-                                                <input name="textinput" placeholder="Last Name"
-                                                       class="form-control input-md" type="text">
+                                                <input name="l_name" placeholder="Last Name" class="form-control input-md" value="Last Name" type="text">
                                             </div>
                                         </div>
 
-                                        <!-- Text input-->
+                                        <!--Email -->
+                                        <div class="form-group required">
+                                            <label class="col-md-4 control-label">Email<sup>*</sup></label>
+
+                                            <div class="col-md-6">
+                                                <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                            </div>
+                                        </div>
+
+                                        <!-- Phone input-->
                                         <div class="form-group required">
                                             <label class="col-md-4 control-label">Phone Number <sup>*</sup></label>
 
                                             <div class="col-md-6">
-                                                <input name="textinput" placeholder="Phone Number"
-                                                       class="form-control input-md" type="text">
-
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">
-                                                        <small> Hide the phone number on the published ads.</small>
-                                                    </label>
-                                                </div>
+                                                <input name="f_number" placeholder="Phone Number" class="form-control input-md" value="3700224673" type="text">
                                             </div>
                                         </div>
 
-                                        <!-- Multiple Radios -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label">Gender</label>
-
-                                            <div class="col-md-6">
-                                                <div class="radio">
-                                                    <label for="Gender-0">
-                                                        <input name="Gender" id="Gender-0" value="1" checked="checked"
-                                                               type="radio">
-                                                        Male </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label for="Gender-1">
-                                                        <input name="Gender" id="Gender-1" value="2" type="radio">
-                                                        Female </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Textarea -->
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label" for="textarea">About Yourself</label>
-
-                                            <div class="col-md-6">
-                                                <textarea class="form-control" id="textarea" name="textarea">About
-                                                    Yourself</textarea>
-                                            </div>
-                                        </div>
+                                        <!-- Address input-->
                                         <div class="form-group required">
-                                            <label for="inputEmail3" class="col-md-4 control-label">Email
-                                                <sup>*</sup></label>
+                                            <label class="col-md-4 control-label">Address <sup>*</sup></label>
 
                                             <div class="col-md-6">
-                                                <input type="email" class="form-control" id="inputEmail3"
-                                                       placeholder="Email">
+                                                <input name="u_address" placeholder="Address" class="form-control input-md" value="some user address"  type="text">
                                             </div>
                                         </div>
+
+                                        <!-- Address input-->
                                         <div class="form-group required">
-                                            <label for="inputPassword3" class="col-md-4 control-label">Password </label>
+                                            <label class="col-md-4 control-label">City <sup>*</sup></label>
 
                                             <div class="col-md-6">
-                                                <input type="password" class="form-control" id="inputPassword3"
-                                                       placeholder="Password">
-
-                                                <p class="help-block">At least 5 characters
-                                                    <!--Example block-level help text here.--></p>
+                                                <input name="u_city" placeholder="City" class="form-control input-md" value="Some city" type="text">
                                             </div>
                                         </div>
+
+                                        <!-- State input-->
+                                        <div class="form-group required">
+                                            <label class="col-md-4 control-label">State <sup>*</sup></label>
+
+                                            <div class="col-md-6">
+                                                <input name="u_state" placeholder="State" class="form-control input-md" value="Some State" type="text">
+                                            </div>
+                                        </div>
+
+                                        <!-- Country input-->
+                                        <div class="form-group required">
+                                            <label class="col-md-4 control-label">Country <sup>*</sup></label>
+
+                                            <div class="col-md-6">
+                                                <input name="u_country" placeholder="Country" class="form-control input-md" value="Some Country" type="text">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group required">
+                                            <label for="inputPassword3" class="col-md-4 control-label">Password <sup>*</sup> </label>
+
+                                            <div class="col-md-6">
+                                                <input type="password" name="u_pass" class="form-control" id="inputPassword3" placeholder="Password">
+
+                                                <p class="help-block">At least 5 characters <!--Example block-level help text here.--></p>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label class="col-md-4 control-label"></label>
 
                                             <div class="col-md-8">
+                                                <!--
                                                 <div class="termbox mb10">
                                                     <label class="checkbox-inline" for="checkboxes-1">
-                                                        <input name="checkboxes" id="checkboxes-1" value="1"
-                                                               type="checkbox">
-                                                        I have read and agree to the <a href="terms-conditions.html">Terms
-                                                            & Conditions</a> </label>
+                                                        <input name="checkboxes" id="checkboxes-1" value="1" type="checkbox">I have read and agree to the <a href="terms-conditions.html">Terms& Conditions</a> </label>
                                                 </div>
                                                 <div style="clear:both"></div>
-                                                <a class="btn btn-primary" href="account-home.html">Register</a></div>
+                                                -->
+                                                <button class="btn btn-primary" type="submit">Register</button>
+                                            </div>
                                         </div>
+
                                     </fieldset>
                                 </form>
                             </div>
