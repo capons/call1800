@@ -7,6 +7,7 @@
 
 {{-- Content --}}
 @section('content')
+
     <div class="intro" style="background-image: url({!! asset('public/assets/web/frontTheme/images/bg3.jpg') !!});">
         <div class="dtable hw100">
             <div class="dtable-cell hw100">

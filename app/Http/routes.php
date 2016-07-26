@@ -22,6 +22,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
 
 /*tollfree route group*/
 Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'auth','localeSessionRedirect','localizationRedirect', 'localize']], function() {
-
      include ('routes/tollfree.routes.php');
+     include ('routes/useraccount.routes.php');
 });

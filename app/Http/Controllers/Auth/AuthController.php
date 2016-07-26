@@ -87,9 +87,11 @@ class AuthController extends Controller
                 $request, $validator
             );
         }
-        $auth = Auth::login($this->create($request->all()));
+       // $auth = Auth::login($this->create($request->all()));
+        $auth = $this->create($request->all());
 
-        if ($auth !== null) //if query false
+
+        if (!$auth) //if query false
         {
 
             // if query false log all data here
@@ -167,5 +169,74 @@ class AuthController extends Controller
         ]);
         $this->last_id = $save_data->id;    //last user save data id from database
         return $save_data;
+    }
+
+
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function postLogin(Request $request) //login via email + pass for client (administrator)
+    {
+
+        // If the class is using the ThrottlesLogins trait, we can automatically throttle
+        // the login attempts for this application. We'll key this by the username and
+        // the IP address of the client making these requests into this application.
+        $throttles = $this->isUsingThrottlesLoginsTrait();
+        if ($throttles && $this->hasTooManyLoginAttempts($request)) {
+            return $this->sendLockoutResponse($request);
+        }
+        //$credentials = $this->getCredentials($request);
+        $messages = [ //validation message
+            'l_email.required' => 'Enter your email!',
+            'l_pass.required' => 'Enter your password!'
+        ];
+        //$validator = Validator::make(Input::all(), $rules,$messages);
+        $validator = Validator::make($request->all(), [
+            'l_email' => 'required',
+            'l_pass' => 'required'
+        ], $messages);
+        if ($validator->fails()) { //if true display error
+            return redirect('auth/login')
+                ->withInput()
+                ->withErrors($validator); //set validation error name to display in error layout  views/common/errors.blade.php
+        } else {
+            $userdata_email = array( //login via email by client
+                'email'     => Input::get('l_email'),  //email -> database row name
+                'password'  => Input::get('l_pass')//password -> database row name
+            );
+            /*
+            $userdata_name = array( //login via name by manager
+                'login'    => Input::get('l_email'),
+                'password'  => Input::get('l_pass')
+            );
+            */
+
+            if (Auth::attempt(/*$credentials*/$userdata_email/* + ['active' => 1]*/, $request->has('remember'))) { //avtive need to be 1 to check if user active account
+                Lang::get('message.auth.access_login'); //send message to user via flash data
+                return redirect('us/account');
+
+
+
+
+
+            } else {
+                $this->login_err_m = Lang::get('site/authpage/site.login_message.login_error');
+            }
+        }
+
+        // If the login attempt was unsuccessful we will increment the number of attempts
+        // to login and redirect the user back to the login form. Of course, when this
+        // user surpasses their maximum number of attempts they will get locked out.
+        if ($throttles) {
+            $this->incrementLoginAttempts($request);
+        }
+
+        //return redirect($this->loginPath())
+        return redirect('auth/login') //redirect to with message
+        ->withInput($request->only($this->loginUsername(), 'remember'))
+            ->withErrors([
+                $this->loginUsername() =>$this->getFailedLoginMessage() //$this->login_err_m,//$this->getFailedLoginMessage(), //message active account error
+            ]);
     }
 }

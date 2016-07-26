@@ -75,12 +75,40 @@
                                             </div>
                                         </div>
 
-                                        <!-- Address input-->
+
+                                        <!-- Country input-->
+                                        <div class="form-group required">
+                                            <label class="col-md-4 control-label">Country <sup>*</sup></label>
+
+                                            <div class="col-md-6">
+                                                <!--
+                                                <input name="u_country" placeholder="Country" class="form-control input-md" value="Some Country" type="text">
+                                                -->
+                                                <select name="u_country" class="form-control">
+                                                    <option>USA</option>
+                                                    <option>Canada</option>
+                                                    <option>Ukraine</option>
+                                                    <option>France</option>
+                                                    <option>Italy</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- City input-->
                                         <div class="form-group required">
                                             <label class="col-md-4 control-label">City <sup>*</sup></label>
 
                                             <div class="col-md-6">
+                                                <!--
                                                 <input name="u_city" placeholder="City" class="form-control input-md" value="Some city" type="text">
+                                                -->
+                                                <select name="u_city" class="form-control">
+                                                    <option>City 1</option>
+                                                    <option>City 2</option>
+                                                    <option>City 3</option>
+                                                    <option>City 4</option>
+                                                    <option>City 5</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -93,14 +121,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- Country input-->
-                                        <div class="form-group required">
-                                            <label class="col-md-4 control-label">Country <sup>*</sup></label>
 
-                                            <div class="col-md-6">
-                                                <input name="u_country" placeholder="Country" class="form-control input-md" value="Some Country" type="text">
-                                            </div>
-                                        </div>
 
 
 

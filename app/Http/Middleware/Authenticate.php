@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
 
 class Authenticate
 {
@@ -42,6 +45,12 @@ class Authenticate
             }
         }
 
-        return $next($request);
+        //return $next($request);
+        if ( Auth::check() && Auth::user()->active == 1 ) //check if user active account
+        {
+            return $next($request);
+        }
+        Session::flash('user-info', Lang::get('error.auth.no_access'));  //if user do not login
+        return redirect()->guest('auth/login');
     }
 }

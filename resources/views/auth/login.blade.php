@@ -19,27 +19,41 @@
                         </div>
                         <div class="panel-body">
                             <form action="{{action('Auth\AuthController@postLogin')}}" method="post" role="form">
+                                <div class="row"> <!--display form error -->
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 al-center">
+
+                                            <!-- Display Validation Errors -->
+                                            @include('common.errors')
+                                                    <!--Display User information -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                {!! csrf_field() !!}
                                 <div class="form-group">
                                     <label for="sender-email" class="control-label">Username:</label>
                                     <div class="input-icon"><i class="icon-user fa"></i>
-                                        <input id="sender-email" type="text" placeholder="Username" class="form-control email">
+                                        <input id="sender-email" type="text" placeholder="Email" name="l_email" class="form-control email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="user-pass" class="control-label">Password:</label>
                                     <div class="input-icon"><i class="icon-lock fa"></i>
-                                        <input type="password" class="form-control" placeholder="Password" id="user-pass">
+                                        <input type="password" class="form-control" name="l_pass" placeholder="Password" id="user-pass">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <a href="account-home.html" class="btn btn-primary  btn-block">Submit</a>
+                                    <button type="submit"  class="btn btn-primary  btn-block">Submit</button>
                                 </div>
                             </form>
                         </div>
                         <div class="panel-footer">
+                            <!--
                             <div class="checkbox pull-left">
                                 <label> <input type="checkbox" value="1" name="remember" id="remember"> Keep me logged in</label>
                             </div>
+                            -->
                             <p class="text-center pull-right"><a href="forgot-password.html"> Lost your password? </a></p>
                             <div style=" clear:both"></div>
                         </div>
