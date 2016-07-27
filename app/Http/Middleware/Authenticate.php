@@ -37,6 +37,8 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
+
+
         if ($this->auth->guest()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
@@ -45,12 +47,17 @@ class Authenticate
             }
         }
 
+      
+
+
         //return $next($request);
         if ( Auth::check() && Auth::user()->active == 1 ) //check if user active account
         {
             return $next($request);
         }
-        Session::flash('user-info', Lang::get('error.auth.no_access'));  //if user do not login
+        Session::flash('user-info', Lang::get('error.auth.no_access'));  //if user do active  accaunt
         return redirect()->guest('auth/login');
+
+
     }
 }

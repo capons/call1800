@@ -51,12 +51,8 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-4 ">
                                 <div class="cat-list">
-                                    <h3 class="cat-title"><a href="category.html"><i class="fa fa-car ln-shadow"></i>
-                                            Automobiles <span class="count">277,959</span> </a>
-
-                                        <span data-target=".cat-id-1" data-toggle="collapse"
-                                              class="btn-cat-collapsed collapsed">   <span
-                                                    class=" icon-down-open-big"></span> </span>
+                                    <h3 class="cat-title"><a href="{{url('/search')}}"><i class="fa fa-car ln-shadow"></i>Automobiles <span class="count">277,959</span> </a>
+                                        <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                                     </h3>
                                     <ul class="cat-collapse collapse in cat-id-1">
                                         <li><a href="category.html">Car Parts &amp; Accessories</a></li>

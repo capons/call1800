@@ -1,33 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Tollfree;
+namespace App\Http\Controllers\Search;
 
+use App\Models\DB\Company;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
-use Illuminate\Support\Facades\Lang;
-use App\Models\DB\Company;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Lang;
 
-class RegistertollController extends Controller
+
+class SearchController extends Controller
 {
-    protected $redirectTo = '/success'; //redirect path after sign in
-    /**
-     * @param array $data
-     * @return mixed
-     */
     protected function validator(array $data)
     {
         $messages = [ //validation message
-            'company-name.required' => 'Company name is required!',
-            'toll-number.required' => 'Number is required!',
+            'sc_number.numeric' => 'Toll Free Number must be integer!',
         ];
         return Validator::make($data, [   //validation registration form
-            'company-name' => 'required|min:3|max:50',
-            'toll-number' => 'required|min:3|max:50',
-            'checkbox' => 'required'
+
+            'sc_number' => 'numeric',
         ],$messages);
     }
     /**
@@ -37,8 +35,8 @@ class RegistertollController extends Controller
      */
     public function index()
     {
-        return view('tollfree.regtoll');
-
+        $search_data = null; //default select all data and display
+        return view ('search.index',['search_data' => $search_data]);
     }
 
     /**
@@ -59,35 +57,33 @@ class RegistertollController extends Controller
      */
     public function store(Request $request)
     {
-      
-
-        $validator = $this->validator($request->all());
-        if ($validator->fails()) {
-            return redirect('toll/reg')
-                ->withInput()
-                ->withErrors($validator); //set validation error name to display in error layout  views/common/errors.blade.php
-        }
-        $company = $this->add($request->all());
-        if (! $company)
-        {
-
-            //save to log if data not save
-
-            return redirect($this->redirectTo);
-            die();
-        }
-
-        Session::flash('user-info', Lang::get('site/tollfreepage/site.tollreg.message.accessreg')); //send message to user via flash data
-        return redirect($this->redirectTo);
+        //
     }
 
     /**
-     * @param array $data
+     * @param Request $request
      * @return mixed
      */
-    protected function add(array $data){ //save data to database
-        $new_company = Company::create(['name' => $data['company-name'], 'description' => $data['company-desc'], 'category' => $data['category-name'],'web-number' => $data['web-number'],'number' => $data['toll-number']]);
-        return $new_company;
+    public function filter(Request $request) //display filter data
+    {
+            $validator = $this->validator($request->all());
+            if ($validator->fails()) { //if true display error
+                return redirect('/search')
+                    ->withInput()
+                    ->withErrors($validator); //set validation error name to display in error layout  views/common/errors.blade.php
+            } else {
+                $userdata_email = array( //login via email by client
+                    'email' => Input::get('l_email'),  //email -> database row name
+                    'password' => Input::get('l_pass')//password -> database row name
+                );
+                $search_data = Company::where('name', 'LIKE', Input::get('sc_name'))
+                    ->orWhere('category', 'LIKE', Input::get('sc_category'))
+                    ->orWhere('number', 'LIKE', Input::get('sc_number'))
+                    ->get();
+
+            }
+
+            return view('search.index', ['search_data' => $search_data]);
 
     }
 
@@ -100,6 +96,12 @@ class RegistertollController extends Controller
     public function show($id)
     {
         //
+
+
+
+
+
+
     }
 
     /**

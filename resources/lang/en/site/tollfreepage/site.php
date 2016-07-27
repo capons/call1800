@@ -11,6 +11,7 @@ return [
             'company' => 'Company Name',
             'desc' => 'Company Description',
             'number' => 'Toll Free Number',
+            'web' => 'Website',
             'address' => 'Address',
             'city' => 'City',
             'state' => 'State',

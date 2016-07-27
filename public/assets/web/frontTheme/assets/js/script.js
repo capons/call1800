@@ -87,7 +87,7 @@ $(document).ready(function() {
     });
     return false;
     });
-
+    /*   ADD Ajax data to html
     urls = $('#ajaxTabs li:first-child a').attr("href");
     //alert(urls);
     $("#allAds").empty().append("<div id='loading text-center'> <br> <img class='center-block' src='images/loading.gif' alt='Loading' /> <br>  </div>");
@@ -96,6 +96,7 @@ $(document).ready(function() {
         $('.tooltipHere').tooltip('hide');
     }
     });
+    */
 
 
     /*==================================

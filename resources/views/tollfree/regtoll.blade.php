@@ -105,7 +105,7 @@
                                             </div>
                                         </div>
 
-                                        <!--Address -->
+                                        <!--
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" >@lang('site/tollfreepage/site.tollreg.regform.address')</label>
                                             <div class="col-md-8">
@@ -113,7 +113,7 @@
                                             </div>
                                         </div>
 
-                                        <!--City -->
+
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">@lang('site/tollfreepage/site.tollreg.regform.city')</label>
                                             <div class="col-md-8">
@@ -121,7 +121,7 @@
                                             </div>
                                         </div>
 
-                                        <!--State -->
+
                                         <div class="form-group">
                                             <label  class="col-md-3 control-label">@lang('site/tollfreepage/site.tollreg.regform.state')</label>
                                             <div class="col-md-8">
@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
 
-                                        <!--Country -->
+
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">@lang('site/tollfreepage/site.tollreg.regform.country')</label>
                                             <div class="col-md-8">
@@ -137,13 +137,14 @@
                                             </div>
                                         </div>
 
-                                        <!--Zipcode -->
+
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">@lang('site/tollfreepage/site.tollreg.regform.zip')</label>
                                             <div class="col-md-8">
                                                 <input type="number" name="zip" class="form-control" value="43566" >
                                             </div>
                                         </div>
+                                        -->
 
                                         <!-- Prepended text-->
                                         <!--
@@ -154,6 +155,14 @@
                                             </div>
                                         </div>
                                         -->
+
+                                        <!-- Website-->
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="Price">@lang('site/tollfreepage/site.tollreg.regform.web')</label>
+                                            <div class="col-md-8">
+                                                <input id="Adtitle" name="web-number" value="18004456325"  placeholder="Phone number" class="form-control input-md" required type="number">
+                                            </div>
+                                        </div>
 
                                         <!-- Toll free number-->
                                         <div class="form-group">

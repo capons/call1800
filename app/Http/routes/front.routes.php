@@ -19,6 +19,10 @@ Route::post('auth/register', 'Auth\AuthController@postRegister'); //receive data
 Route::get('auth/active', 'Auth\AuthController@postActivate'); //activate user account
 
 
+/**********Search route************/
+Route::get('/search', 'Search\SearchController@index'); //default search view
+Route::post('/search', 'Search\SearchController@filter'); //display filter data
+
 
 
 

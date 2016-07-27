@@ -18,16 +18,13 @@ class CreateCompanyTable extends Migration
             $table->increments('id');
 
             $table->string('name',128);
-            
+            $table->string('category',128)->nullable();
             $table->string('description',256)->nullable(); //+
 
-            $table->integer('number')->length(20)->unsigned();
+            $table->integer('web-number')->length(20)->unsigned();
 
-            $table->string('address',128)->nullable();
-            $table->string('city',128)->nullable();
-            $table->string('state',128)->nullable();
-            $table->string('country',128)->nullable();
-            $table->integer('zipcode')->length(20)->unsigned()->nullable();
+            $table->integer('number')->length(20)->unsigned();
+            
 
 
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

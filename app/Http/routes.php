@@ -16,12 +16,11 @@
 
 /*  default route group*/
 Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'localeSessionRedirect','localizationRedirect', 'localize']], function() {
-    include('routes/front.routes.php');
-   // include ('routes/tollfree.routes.php');
+    include('routes/front.routes.php');  //default route
 });
 
 /*tollfree route group*/
 Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'auth','localeSessionRedirect','localizationRedirect', 'localize']], function() {
-     include ('routes/tollfree.routes.php');
-     include ('routes/useraccount.routes.php');
+     include ('routes/tollfree.routes.php');    //Toll Free number
+     include ('routes/useraccount.routes.php'); //User account
 });

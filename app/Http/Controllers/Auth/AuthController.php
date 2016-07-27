@@ -93,7 +93,6 @@ class AuthController extends Controller
 
         if (!$auth) //if query false
         {
-
             // if query false log all data here
             return redirect('auth/register');
             die();
@@ -202,41 +201,34 @@ class AuthController extends Controller
                 ->withErrors($validator); //set validation error name to display in error layout  views/common/errors.blade.php
         } else {
             $userdata_email = array( //login via email by client
-                'email'     => Input::get('l_email'),  //email -> database row name
-                'password'  => Input::get('l_pass')//password -> database row name
+                'email' => Input::get('l_email'),  //email -> database row name
+                'password' => Input::get('l_pass')//password -> database row name
             );
-            /*
-            $userdata_name = array( //login via name by manager
-                'login'    => Input::get('l_email'),
-                'password'  => Input::get('l_pass')
-            );
-            */
+            if (Auth::attempt(/*$credentials*/$userdata_email + ['active' => 1], true/*$request->has('remember')*/)) { //avtive need to be 1 to check if user active account
 
-            if (Auth::attempt(/*$credentials*/$userdata_email/* + ['active' => 1]*/, $request->has('remember'))) { //avtive need to be 1 to check if user active account
-                Lang::get('message.auth.access_login'); //send message to user via flash data
+                // Lang::get('message.auth.access_login'); //send message to user via flash data
                 return redirect('us/account');
-
-
-
+               // return $this->handleUserWasAuthenticated($request, $throttles);
 
 
             } else {
                 $this->login_err_m = Lang::get('site/authpage/site.login_message.login_error');
             }
         }
-
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
         if ($throttles) {
             $this->incrementLoginAttempts($request);
         }
-
         //return redirect($this->loginPath())
+
+        /*
         return redirect('auth/login') //redirect to with message
         ->withInput($request->only($this->loginUsername(), 'remember'))
             ->withErrors([
-                $this->loginUsername() =>$this->getFailedLoginMessage() //$this->login_err_m,//$this->getFailedLoginMessage(), //message active account error
+                $this->loginUsername() => $this->login_err_m,//$this->getFailedLoginMessage(), //message active account error
             ]);
+        */
+        Session::flash('user-info', $this->login_err_m); //send message to user via flash data
+
+        return redirect('auth/login');
     }
 }

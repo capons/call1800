@@ -18,18 +18,19 @@
                             </h2>
                         </div>
                         <div class="panel-body">
-                            <form action="{{action('Auth\AuthController@postLogin')}}" method="post" role="form">
-                                <div class="row"> <!--display form error -->
-                                    <div class="col-xs-12">
-                                        <div class="col-xs-12 al-center">
-
-                                            <!-- Display Validation Errors -->
-                                            @include('common.errors')
-                                                    <!--Display User information -->
+                            <div class="col-xs-12"> <!--Display user error -->
+                                <div  class="col-xs-6 al-center">
+                                            <!--Display User information -->
+                                    @if(Session::has('user-info'))
+                                        <div class="alert-box success">
+                                            <h2 style="text-align: center">{{ Session::get('user-info') }}</h2>
                                         </div>
-                                    </div>
+                                    @endif
 
                                 </div>
+                            </div>
+                            <form action="{{action('Auth\AuthController@postLogin')}}" method="post" role="form">
+
                                 {!! csrf_field() !!}
                                 <div class="form-group">
                                     <label for="sender-email" class="control-label">Username:</label>
