@@ -2,8 +2,7 @@
 
 return [
     'tollbuy' => [
-        'test' => 'buy toll free number',
-        'mainpage' => 'Main'
+        'mainpage' => 'Home page'
     ],
     'tollreg' => [
         'regform' => [

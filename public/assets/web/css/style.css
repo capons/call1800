@@ -4,6 +4,7 @@
 .al-center {
     margin: 0 auto;
     float: none;
+    display: table;
 }
 .no-padding {
     padding: 0px;
@@ -11,6 +12,13 @@
 .btn-find-f {
     font-size: 18px;
     height: 48px;
+}
+.table-center {
+    text-align: center;
+    vertical-align: middle !important;
+}
+.no-border {
+    border: none !important;
 }
 
 

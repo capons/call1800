@@ -13,6 +13,9 @@
     <link rel="apple-touch-icon-precomposed" href="{!! asset('public/assets/web/frontTheme/assets/ico/apple-touch-icon-57-precomposed.png') !!}">
     <link rel="shortcut icon" href="{!! asset('public/assets/web/frontTheme/assets/ico/favicon.png') !!}">
 
+    <!--Jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="{!! asset('public/assets/web/frontTheme/assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
 
@@ -40,7 +43,10 @@
             elements: true
         };
     </script>
-    <script src="{!! asset('public/assets/web/frontTheme/assets/js/pace.min.js') !!}"></script>
+    <script src="{!! asset('accountpage.jsjs') !!}"></script>
+
+    <!--default js -->
+    <script src="{!! asset('public/assets/web/js/accountpage.js') !!}"></script>
 
 
 
@@ -57,92 +63,28 @@
 <body>
 
 <div id="wrapper">
-    <div class="header">
-        <nav class="navbar navbar-site navbar-default" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-                    <a href="index.html" class="navbar-brand logo logo-title">
-                        <!-- Original Logo will be placed here  -->
-                        <span class="logo-icon"><i class="icon icon-search-1 ln-shadow-logo shape-0"></i> </span>
-                        BOOT<span>CLASSIFIED </span>
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse">
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ url('auth/logout')}}">Signout <i class="glyphicon glyphicon-off"></i> </a></li>
-                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span><?php echo Auth::user()->name; ?></span> <i class="icon-user fa"></i> <i
-                                        class=" icon-down-open-big fa"></i></a>
-                            <ul class="dropdown-menu user-menu">
-                                <li class="active">
-                                    <a href="account-home.html"><i class="icon-home"></i> Personal Home</a>
-                                </li>
-
-                                <li>
-                                    <a href="account-myads.html"><i class="icon-th-thumb"></i> My Toll Free Number </a>
-                                </li>
-                                <li>
-                                    <a href="account-favourite-ads.html"><i class="icon-heart"></i> Favourite Toll Free Number </a>
-                                </li>
-                                <li>
-                                    <a href="account-saved-search.html"><i class="icon-star-circled"></i> Saved search</a>
-                                </li>
-                                <li>
-                                    <a href="account-archived-ads.html"><i class="icon-folder-close"></i> Archived Toll Free Number</a>
-                                </li>
-                                <li>
-                                    <a href="account-pending-approval-ads.html"><i class="icon-hourglass"></i> Pending approval </a>
-                                </li>
-                                <li>
-                                    <a href="statements.html"><i class=" icon-money "></i> Payment history </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li style="border-left:none;" class="postadd"><a style="padding: 12px 0px;" class="btn btn-block   btn-border btn-post btn-danger" href="{{url('toll/reg')}}">Post Free Add</a></li>
-                        <li style="border-left:none;" class="postadd"><a style="padding: 12px 0px;" class="btn btn-block   btn-border btn-post btn-danger" href="{{url('toll/buy')}}">Buy Toll Free Number</a></li>
-                        <li style="border-left:none;" class="postadd"><a style="padding: 12px 0px;" class="btn btn-block   btn-border btn-post btn-danger" href="#">Port Toll Free Number</a></li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </div>
+    @include('account.header')
     <!-- /.header -->
 
+    <div class="main-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 page-sidebar">
 
+                    @include('account.sidebar');
 
+                </div> <!-- ./sidebar-->
+                <div class="col-sm-9 page-content">
 
+                    @yield('content')
 
-
-
-    @section('sidebar')
-        Main side bar.
-        @show
-        @yield('content') <!-- account content -->
-
-
-        <div class="footer" id="footer">
-            <div class="container">
-                <ul class=" pull-left navbar-link footer-nav">
-                    <li><a href="index.html"> Home </a> <a href="about-us.html"> About us </a> <a href="#"> Terms and
-                            Conditions </a> <a href="#"> Privacy Policy </a> <a href="contact.html"> Contact us </a> <a
-                                href="faq.html"> FAQ </a>
-                </ul>
-                <ul class=" pull-right navbar-link footer-nav">
-                    <li> &copy; 2015 BootClassified</li>
-                </ul>
+                </div> <!-- ./content-->
             </div>
-
         </div>
-        <!--/.footer-->
+    </div>
 
-
-
-
+    @include('account.footer');
+    <!--/.footer-->
 
 </div>
 

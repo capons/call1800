@@ -24,13 +24,16 @@ $(document).ready(function () {
         func();
     });
 });
-var users_registr = (function () {
+var toll_free_number = (function () {
     var doConstruct = function () {
-        main.add_init_callback(this.registration_checkbox);
+        main.add_init_callback(this.add_input_prefix);
     };
     doConstruct.prototype = {
-        registration_checkbox: function () { //only one checkbox is checked
-            
+        add_input_prefix: function () { //Buy Toll Free number prefix select => add value to form input
+            $('#tollfree-prefix').change(function(){
+                var num_prefix = $('#tollfree-prefix').val();
+                $("input[name='tfn_prefix']" ).val(num_prefix); //add number prefix to form input
+            });
         },
     };
     return new doConstruct;

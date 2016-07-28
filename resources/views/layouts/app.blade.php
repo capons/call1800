@@ -13,6 +13,9 @@
     <link rel="apple-touch-icon-precomposed" href="{!! asset('public/assets/web/frontTheme/assets/ico/apple-touch-icon-57-precomposed.png') !!}">
     <link rel="shortcut icon" href="{!! asset('public/assets/web/frontTheme/assets/ico/favicon.png') !!}">
 
+    <!--Jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
     <!-- Bootstrap core CSS -->
     <link href="{!! asset('public/assets/web/frontTheme/assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
 
@@ -41,6 +44,9 @@
         };
     </script>
     <script src="{!! asset('public/assets/web/frontTheme/assets/js/pace.min.js') !!}"></script>
+
+    <!--default js -->
+    <script src="{!! asset('public/assets/web/js/accountpage.js') !!}"></script>
 
 
 
