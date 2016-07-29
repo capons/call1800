@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Tollfree;
+namespace App\Http\Controllers\Payment;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Stripe\Stripe;
 
-class ConfirmController extends Controller
+
+class StripeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +18,7 @@ class ConfirmController extends Controller
      */
     public function index()
     {
-        if(session()->has('tf_buy')) {
-
-            $buy_tf_data = session('tf_buy'); //session data from BuytollController@store method
-
-            return view('tollfree.confirm', ['buy_tf_data' => $buy_tf_data]);
-        } else {
-            return redirect('/');  //redirect to default page
-        }
+        //
     }
 
     /**
@@ -44,10 +39,46 @@ class ConfirmController extends Controller
      */
     public function store(Request $request)
     {
-        echo '<pre>';
-        print_r($request->all());
-        echo '</pre>';
-        session()->forget('tf_buy');
+
+        //ДОДЕЛАТЬ ПЛАТЕЖКУ
+        
+        //echo '<pre>';
+        //print_r($request->all());
+        //echo '</pre>';
+        //die();
+        //session()->forget('tf_buy');
+
+
+        $token = $request->input('stripeToken');
+        $price = $request->input('ctfn_price');
+        $user_id = $request->input('c_user_id');
+        \Stripe\Stripe::setApiKey(env('STRIPE_SK'));
+
+        try {
+            $charge = \Stripe\Charge::create([
+                'amount' => $price,
+                'currency' => 'usd',
+                'source' => $token,
+                //'customer' => $user_id,
+                'metadata' => [
+                    'product_name' => 'test'
+                ]
+            ]);
+            echo '<pre>';
+            print_r($charge->status);
+            echo '<pre>';
+
+
+        } catch (\Stripe\Error\Card $e) {
+            return redirect()->route('toll/confirm')
+                ->withErrors($e->getMessage())
+                ->withInput();
+        }
+
+        if($charge->status == 'succeeded'){
+            echo 'ok save to DB need!';
+        }
+
     }
 
     /**

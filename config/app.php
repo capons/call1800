@@ -140,6 +140,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        //Illuminate\Html\FormFacade::class,
+        Illuminate\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -148,7 +150,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,  //localization class
+        Netshell\Paypal\PaypalServiceProvider::class,                           //PayPal payment system SDK
 
     ],
 
@@ -197,8 +200,11 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Form'      => Illuminate\Html\FormFacade::class,
+        'HTML'      => Illuminate\Html\HtmlServiceProvider::class,
 
         'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class, //add alies to Localization
+        'Paypal' => Netshell\Paypal\Facades\Paypal::class, //add alias to PayPal
 
     ],
 
