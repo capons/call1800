@@ -105,10 +105,21 @@ class PaypalController extends Controller
         print_r($request->all());
         echo '</pre>';
         */
+
+        
+        
+
+
+       // echo $buyrollfree->id;
+       // die();
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');  //Или все это поместить в метод  getDone и в нем если success то сохранять в базу данных
         DB::beginTransaction();      //update table request and promise by Transaction
         try {
-            $buyrollfree = Buytollfree::create(['user_id' => $request->input('c_user_id'), 'plan_type' => $request->input('ctfn_type'), 'month_count' => $request->input('ctfn_month_count'), 'minute' => $request->input('ctfn_min')]);
+            $to_change = '+ '.($request->input('ctfn_month_count')*30).' day';
+            $date = date("Y-m-d H:i:s");
+            $date = strtotime($date);
+            $date = strtotime($to_change, $date); //date in future when auction is expired
+            $buyrollfree = Buytollfree::create(['user_id' => $request->input('c_user_id'), 'plan_type' => $request->input('ctfn_type'), 'month_count' => $request->input('ctfn_month_count'), 'expires' => date("Y-m-d H:i:s",$date), 'minute' => $request->input('ctfn_min')]);
 
         } catch (ValidationException $e) {
             DB::rollback();
@@ -145,13 +156,6 @@ class PaypalController extends Controller
         }
         DB::commit();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        
-        
-
-
-       // echo $buyrollfree->id;
-       // die();
-
 
 
 
@@ -216,7 +220,7 @@ class PaypalController extends Controller
     /**
      * @param Request $request
      */
-    public function getDone(Request $request,$buy_id) //$buy_id buttollfree table last insert id
+    public function getDone(Request $request, $buy_id) //$buy_id buttollfree table last insert id
 
     {
 
@@ -249,10 +253,17 @@ class PaypalController extends Controller
                 //->where('destination', 'San Diego')
                 ->update(['payment_status' => 'success']);
 
+
             if (!$payment_success)
             {
                 //save to log -> Payment success but not update in database
             }
+
+
+
+
+
+
             Session::flash('user-info', Lang::get('site/payment/site.paypal.success')); //send message to user via flash data
             session()->forget('tf_buy'); //destroy session -> send buytollfree data to buy
             return redirect('/success');

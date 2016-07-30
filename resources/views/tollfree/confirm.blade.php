@@ -23,9 +23,8 @@
 <!-- Inlude Stripe.js -->
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script>
-    Stripe.setPublishableKey('{!! env('STRIPE_PK') !!}'); //config Stripe PK from .env
+    Stripe.setPublishableKey('<?php echo config('services.stripe.key'); ?>');  //stripe key from config/services.php
 </script>
-
 
 
 

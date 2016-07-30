@@ -31,8 +31,10 @@ return [
 
     'stripe' => [
         'model'  => App\User::class,
-        'key'    => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        //'key'    => env('STRIPE_KEY'),
+        //'secret' => env('STRIPE_SECRET'),
+        'key'    => 'pk_test_IAd9DWUnAPZUIDf0YRKTFOS8',
+        'secret' => 'sk_test_0CMfVj116torUNyLq67ZOwJr',
     ],
 
     'paypal' => [
