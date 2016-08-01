@@ -96,25 +96,25 @@
                             <div class="categories-list  list-filter">
                                 <h5 class="list-title"><strong><a href="#">All Categories</a></strong></h5>
                                 <ul class=" list-unstyled">
-                                    <li><a href="sub-category-sub-location.html"><span
+                                    <li><a href="#"><span
                                                     class="title">Electronics</span><span class="count">&nbsp;8626</span></a>
                                     </li>
-                                    <li><a href="sub-category-sub-location.html"><span class="title">Automobiles </span><span
+                                    <li><a href="#"><span class="title">Automobiles </span><span
                                                     class="count">&nbsp;123</span></a></li>
-                                    <li><a href="sub-category-sub-location.html"><span
+                                    <li><a href="#"><span
                                                     class="title">Property </span><span class="count">&nbsp;742</span></a></li>
-                                    <li><a href="sub-category-sub-location.html"><span
+                                    <li><a href="#"><span
                                                     class="title">Services </span><span class="count">&nbsp;8525</span></a></li>
-                                    <li><a href="sub-category-sub-location.html"><span
+                                    <li><a href="#"><span
                                                     class="title">For Sale </span><span class="count">&nbsp;357</span></a></li>
-                                    <li><a href="sub-category-sub-location.html"><span
+                                    <li><a href="#"><span
                                                     class="title">Learning </span><span class="count">&nbsp;3576</span></a></li>
-                                    <li><a href="sub-category-sub-location.html"><span class="title">Jobs </span><span
+                                    <li><a href="#"><span class="title">Jobs </span><span
                                                     class="count">&nbsp;453</span></a></li>
-                                    <li><a href="sub-category-sub-location.html"><span
+                                    <li><a href="#"><span
                                                     class="title">Cars & Vehicles</span><span class="count">&nbsp;801</span></a>
                                     </li>
-                                    <li><a href="sub-category-sub-location.html"><span class="title">Other</span><span
+                                    <li><a href="#"><span class="title">Other</span><span
                                                     class="count">&nbsp;9803</span></a></li>
                                 </ul>
                             </div>
@@ -123,19 +123,19 @@
                             <div class="locations-list  list-filter">
                                 <h5 class="list-title"><strong><a href="#">Location</a></strong></h5>
                                 <ul class="browse-list list-unstyled long-list">
-                                    <li><a href="sub-category-sub-location.html"> Atlanta </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Wichita </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Anchorage </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Dallas </a></li>
-                                    <li><a href="sub-category-sub-location.html">New York </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Santa Ana/Anaheim </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Miami </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Virginia Beach </a></li>
-                                    <li><a href="sub-category-sub-location.html"> San Diego </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Boston </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Houston </a></li>
-                                    <li><a href="sub-category-sub-location.html">Salt Lake City </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Other Locations </a></li>
+                                    <li><a href="#"> Atlanta </a></li>
+                                    <li><a href="#"> Wichita </a></li>
+                                    <li><a href="#"> Anchorage </a></li>
+                                    <li><a href="#"> Dallas </a></li>
+                                    <li><a href="#">New York </a></li>
+                                    <li><a href="#"> Santa Ana/Anaheim </a></li>
+                                    <li><a href="#"> Miami </a></li>
+                                    <li><a href="#"> Virginia Beach </a></li>
+                                    <li><a href="#"> San Diego </a></li>
+                                    <li><a href="#"> Boston </a></li>
+                                    <li><a href="#"> Houston </a></li>
+                                    <li><a href="#">Salt Lake City </a></li>
+                                    <li><a href="#"> Other Locations </a></li>
                                 </ul>
                             </div>
                             <!--/.locations-list-->
@@ -162,11 +162,11 @@
                             <div class="locations-list  list-filter">
                                 <h5 class="list-title"><strong><a href="#">Seller</a></strong></h5>
                                 <ul class="browse-list list-unstyled long-list">
-                                    <li><a href="sub-category-sub-location.html"><strong>Toll Free Number</strong> <span
+                                    <li><a href="#"><strong>Toll Free Number</strong> <span
                                                     class="count">228,705</span></a></li>
-                                    <li><a href="sub-category-sub-location.html">Business <span
+                                    <li><a href="#">Business <span
                                                     class="count">28,705</span></a></li>
-                                    <li><a href="sub-category-sub-location.html">Personal <span
+                                    <li><a href="#">Personal <span
                                                     class="count">18,705</span></a></li>
                                 </ul>
                             </div>
@@ -174,11 +174,11 @@
                             <div class="locations-list  list-filter">
                                 <h5 class="list-title"><strong><a href="#">Condition</a></strong></h5>
                                 <ul class="browse-list list-unstyled long-list">
-                                    <li><a href="sub-category-sub-location.html">New <span class="count">228,705</span></a>
+                                    <li><a href="#">New <span class="count">228,705</span></a>
                                     </li>
-                                    <li><a href="sub-category-sub-location.html">Used <span class="count">28,705</span></a>
+                                    <li><a href="#">Used <span class="count">28,705</span></a>
                                     </li>
-                                    <li><a href="sub-category-sub-location.html">None </a></li>
+                                    <li><a href="#">None </a></li>
                                 </ul>
                             </div>
                             <!--/.list-filter-->
@@ -281,7 +281,7 @@
                                             <!--/.photobox-->
                                             <div class="col-sm-7 add-desc-box">
                                                 <div class="add-details">
-                                                    <h5 class="add-title"> <a href="ads-details.html">Brand New Samsung Phones </a> </h5>
+                                                    <h5 class="add-title"> <a href="#">Brand New Samsung Phones </a> </h5>
                                                     <span class="info-row"> <span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Business Ads">B </span> <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm </span> - <span class="category">Electronics </span>- <span class="item-location"><i class="fa fa-map-marker"></i> London </span> </span> </div>
                                             </div>
                                             <!--/.add-desc-box-->
@@ -308,8 +308,8 @@
                                                 <!--/.photobox-->
                                                 <div class="col-sm-7 add-desc-box">
                                                     <div class="add-details">
-                                                        <h5 class="add-title"> <a href="ads-details.html">{{$row->name}} </a> </h5>
-                                                        <h5 class="add-title"> <a href="ads-details.html">{{$row->number}} </a> </h5>
+                                                        <h5 class="add-title"> <a href="#">{{$row->name}} </a> </h5>
+                                                        <h5 class="add-title"> <a href="#">{{$row->number}} </a> </h5>
                                                         <span class="info-row"> <span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Business Ads">B </span> <span class="date"><i class=" icon-clock"> </i> Today 1:21 pm </span> - <span class="category">{{$row->category}} </span>- <span class="item-location"><i class="fa fa-map-marker"></i> London </span> </span> </div>
                                                 </div>
                                                 <!--/.add-desc-box-->

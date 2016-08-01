@@ -62,6 +62,27 @@ var payment_methods = (function () {
     return new doConstruct;
 })();
 
+/* routes '/' front_page */
+var front_page = (function () {
+    var doConstruct = function () {
+        main.add_init_callback(this.search_button_change);
+    };
+    doConstruct.prototype = {
+        search_button_change: function () { //disable buy button
+            console.log('test');
+            $('#fsf-input').keyup(function(){
+                var input_val = $('#fsf-input').val();
+                if($.isNumeric(input_val) && input_val.length == 11){
+                    console.log('correct number');
+                }
+            });
+        },
+    };
+    return new doConstruct;
+})();
+
+/* ./fron_page*/
+
 
 
 //Stripe payment config

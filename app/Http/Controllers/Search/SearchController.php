@@ -66,6 +66,7 @@ class SearchController extends Controller
      */
     public function filter(Request $request) //display filter data
     {
+
             $validator = $this->validator($request->all());
             if ($validator->fails()) { //if true display error
                 return redirect('/search')

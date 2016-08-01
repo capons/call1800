@@ -19,34 +19,34 @@
                 <div class="panel-collapse collapse in" id="MyAds">
                     <ul class="acc-list">
                         <li>
-                            <a href="account-favourite-ads.html"><i class="icon-heart"></i>Favourite <span class="badge">42</span> </a>
+                            <a href="#"><i class="icon-heart"></i>Favourite <span class="badge">42</span> </a>
                         </li>
                         <li>
-                            <a href="account-saved-search.html"><i class="icon-star-circled"></i>Saved search <span class="badge">42</span> </a>
+                            <a href="#"><i class="icon-star-circled"></i>Saved search <span class="badge">42</span> </a>
                         </li>
                         <li>
-                            <a href="account-archived-ads.html"><i class="icon-folder-close"></i>Archived<span class="badge">42</span></a>
+                            <a href="#"><i class="icon-folder-close"></i>Archived<span class="badge">42</span></a>
                         </li>
                         <li>
-                            <a href="account-pending-approval-ads.html"><i class="icon-hourglass"></i> Pending approval <span class="badge">42</span></a>
+                            <a href="#"><i class="icon-hourglass"></i> Pending approval <span class="badge">42</span></a>
                         </li>
                         <li>
-                            <a href="account-myads.html"><i class="icon-docs"></i> My Numbers <span class="badge">42</span> </a>
+                            <a href="#"><i class="icon-docs"></i> My Numbers <span class="badge">42</span> </a>
                         </li>
                         <li>
-                            <a href="account-favourite-ads.html"><i class="icon-heart"></i>Call Details  <span class="badge">42</span> </a>
+                            <a href="#"><i class="icon-heart"></i>Call Details  <span class="badge">42</span> </a>
                         </li>
                         <li>
-                            <a href="account-saved-search.html"><i class="icon-star-circled"></i>Usage Report<span class="badge">42</span> </a>
+                            <a href="#"><i class="icon-star-circled"></i>Usage Report<span class="badge">42</span> </a>
                         </li>
                         <li>
-                            <a href="account-archived-ads.html"><i class="icon-folder-close"></i>Payment History<span class="badge">42</span></a>
+                            <a href="#"><i class="icon-folder-close"></i>Payment History<span class="badge">42</span></a>
                         </li>
                         <li>
-                            <a href="account-archived-ads.html"><i class="icon-folder-close"></i>Monthly Invoices<span class="badge">42</span></a>
+                            <a href="#"><i class="icon-folder-close"></i>Monthly Invoices<span class="badge">42</span></a>
                         </li>
                         <li>
-                            <a href="account-pending-approval-ads.html"><i class="icon-hourglass"></i> Forwarding Price<span class="badge">42</span></a>
+                            <a href="#"><i class="icon-hourglass"></i> Forwarding Price<span class="badge">42</span></a>
                         </li>
 
                     </ul>
@@ -59,7 +59,7 @@
 
                 <div class="panel-collapse collapse in" id="TerminateAccount">
                     <ul class="acc-list">
-                        <li><a href="account-close.html"><i class="icon-cancel-circled "></i> Close account </a></li>
+                        <li><a href="#"><i class="icon-cancel-circled "></i> Close account </a></li>
                     </ul>
                 </div>
             </div>

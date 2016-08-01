@@ -19,26 +19,26 @@
                                     class=" icon-down-open-big fa"></i></a>
                         <ul class="dropdown-menu user-menu">
                             <li class="active">
-                                <a href="account-home.html"><i class="icon-home"></i> Personal Home</a>
+                                <a href="#"><i class="icon-home"></i> Personal Home</a>
                             </li>
 
                             <li>
-                                <a href="account-myads.html"><i class="icon-th-thumb"></i> My Toll Free Number </a>
+                                <a href="#"><i class="icon-th-thumb"></i> My Toll Free Number </a>
                             </li>
                             <li>
-                                <a href="account-favourite-ads.html"><i class="icon-heart"></i> Favourite Toll Free Number </a>
+                                <a href="#"><i class="icon-heart"></i> Favourite Toll Free Number </a>
                             </li>
                             <li>
-                                <a href="account-saved-search.html"><i class="icon-star-circled"></i> Saved search</a>
+                                <a href="#"><i class="icon-star-circled"></i> Saved search</a>
                             </li>
                             <li>
-                                <a href="account-archived-ads.html"><i class="icon-folder-close"></i> Archived Toll Free Number</a>
+                                <a href="#"><i class="icon-folder-close"></i> Archived Toll Free Number</a>
                             </li>
                             <li>
-                                <a href="account-pending-approval-ads.html"><i class="icon-hourglass"></i> Pending approval </a>
+                                <a href="#"><i class="icon-hourglass"></i> Pending approval </a>
                             </li>
                             <li>
-                                <a href="statements.html"><i class=" icon-money "></i> Payment history </a>
+                                <a href="#"><i class=" icon-money "></i> Payment history </a>
                             </li>
                         </ul>
                     </li>

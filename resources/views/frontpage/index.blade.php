@@ -23,17 +23,21 @@
                             <input type="text" name="country" id="autocomplete-ajax" class="form-control locinput input-rel searchtag-input has-icon" placeholder="City/Zipcode..." value="">
                         </div>
                         -->
-                        <div class="col-lg-6 col-sm-6 search-col relative"><i class="icon-docs icon-append"></i>
-                            <input type="text" name="ads" class="form-control has-icon" placeholder="I'm looking for a ..." value="">
-                        </div>
-                        <div class="col-lg-6 col-sm-6 search-col">
-                            <div style="border-right: 1px solid antiquewhite;" class="col-lg-6 col-sm-6 no-padding">
-                                <button style="border-radius: 0px" class="btn btn-primary btn-find-f btn-block"><i class="icon-search"></i><strong>Find</strong></button>
+                        <form id="fsf" action="{{action('Search\SearchController@filter')}}" method="post">
+                            {!! csrf_field() !!}
+
+                            <div class="col-lg-6 col-sm-6 search-col relative"><i class="icon-docs icon-append"></i>
+                                <input id="fsf-input"  type="text" name="sc_name" class="form-control has-icon" placeholder="I'm looking for a ..." value="">
                             </div>
-                            <div class="col-lg-6 col-sm-6 no-padding">
-                                <button class="btn btn-primary btn-search btn-block"><i class="icon-search"></i><strong>Call Now</strong></button>
+                            <div class="col-lg-6 col-sm-6 search-col">
+                                <div style="border-right: 1px solid antiquewhite;" class="col-lg-6 col-sm-6 no-padding">
+                                    <button id="f-find" type="submit" style="border-radius: 0px" class="btn btn-primary btn-find-f btn-block"><i class="icon-search"></i><strong>Find</strong></button>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 no-padding">
+                                    <button id="f-call" type="submit" class="btn btn-primary btn-search btn-block"><i class="icon-search"></i><strong>Call Now</strong></button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                 </div>
@@ -55,14 +59,15 @@
                                         <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
                                     </h3>
                                     <ul class="cat-collapse collapse in cat-id-1">
-                                        <li><a href="category.html">Car Parts &amp; Accessories</a></li>
-                                        <li><a href="category.html">Campervans &amp; Caravans</a></li>
-                                        <li><a href="category.html">Motorbikes &amp; Scooters</a></li>
-                                        <li><a href="category.html">Motorbike Parts &amp; Accessories</a></li>
-                                        <li><a href="category.html">Vans, Trucks &amp; Plant</a></li>
-                                        <li><a href="category.html">Wanted</a></li>
+                                        <li><a href="{{url('/search')}}">Car Parts &amp; Accessories</a></li>
+                                        <li><a href="{{url('/search')}}">Campervans &amp; Caravans</a></li>
+                                        <li><a href="{{url('/search')}}">Motorbikes &amp; Scooters</a></li>
+                                        <li><a href="{{url('/search')}}">Motorbike Parts &amp; Accessories</a></li>
+                                        <li><a href="{{url('/search')}}">Vans, Trucks &amp; Plant</a></li>
+                                        <li><a href="{{url('/search')}}">Wanted</a></li>
                                     </ul>
                                 </div>
+                                <!--
                                 <div class="cat-list">
                                     <h3 class="cat-title"><a href="category.html"><i class="icon-home ln-shadow"></i>
                                             Property <span class="count">228,705</span></a> <span
@@ -100,28 +105,54 @@
                                         <li><a href="category.html">OwnBusiness </a></li>
                                     </ul>
                                 </div>
+                                -->
+                                <div class="cat-list">
+                                    <h3 class="cat-title"><a href="{{url('/search')}}"><i class="fa fa-car ln-shadow"></i>Automobiles <span class="count">277,959</span> </a>
+                                        <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
+                                    </h3>
+                                    <ul class="cat-collapse collapse in cat-id-1">
+                                        <li><a href="{{url('/search')}}">Car Parts &amp; Accessories</a></li>
+                                        <li><a href="{{url('/search')}}">Campervans &amp; Caravans</a></li>
+                                        <li><a href="{{url('/search')}}">Motorbikes &amp; Scooters</a></li>
+                                        <li><a href="{{url('/search')}}">Motorbike Parts &amp; Accessories</a></li>
+                                        <li><a href="{{url('/search')}}">Vans, Trucks &amp; Plant</a></li>
+                                        <li><a href="{{url('/search')}}">Wanted</a></li>
+                                    </ul>
+                                </div>
+                                <div class="cat-list">
+                                    <h3 class="cat-title"><a href="{{url('/search')}}"><i class="fa fa-car ln-shadow"></i>Automobiles <span class="count">277,959</span> </a>
+                                        <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
+                                    </h3>
+                                    <ul class="cat-collapse collapse in cat-id-1">
+                                        <li><a href="{{url('/search')}}">Car Parts &amp; Accessories</a></li>
+                                        <li><a href="{{url('/search')}}">Campervans &amp; Caravans</a></li>
+                                        <li><a href="{{url('/search')}}">Motorbikes &amp; Scooters</a></li>
+                                        <li><a href="{{url('/search')}}">Motorbike Parts &amp; Accessories</a></li>
+                                        <li><a href="{{url('/search')}}">Vans, Trucks &amp; Plant</a></li>
+                                        <li><a href="{{url('/search')}}">Wanted</a></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <div class="cat-list">
-                                    <h3 class="cat-title"><a href="category.html"><i
-                                                    class="fa fa-briefcase ln-shadow"></i> Services <span
-                                                    class="count">45,526</span></a>
+                                    <h3 class="cat-title"><a href="{{url('/search')}}"><i class="fa fa-briefcase ln-shadow"></i> Services <span class="count">45,526</span></a>
                                         <span data-target=".cat-id-4" data-toggle="collapse"
                                               class="btn-cat-collapsed collapsed">   <span
                                                     class=" icon-down-open-big"></span> </span>
                                     </h3>
                                     <ul class="cat-collapse collapse in cat-id-4">
-                                        <li><a href="category.html">Building, Home &amp; Removals</a></li>
-                                        <li><a href="category.html">Entertainment</a></li>
-                                        <li><a href="category.html">Health &amp; Beauty</a></li>
-                                        <li><a href="category.html">Miscellaneous</a></li>
-                                        <li><a href="category.html">Property &amp; Shipping</a></li>
-                                        <li><a href="category.html">Tax, Money &amp; Visas</a></li>
-                                        <li><a href="category.html">Telecoms &amp; Computers</a></li>
-                                        <li><a href="category.html">Travel Services &amp; Tours</a></li>
-                                        <li><a href="category.html">Tuition &amp; Lessons</a></li>
+                                        <li><a href="{{url('/search')}}">Building, Home &amp; Removals</a></li>
+                                        <li><a href="{{url('/search')}}">Entertainment</a></li>
+                                        <li><a href="{{url('/search')}}">Health &amp; Beauty</a></li>
+                                        <li><a href="{{url('/search')}}">Miscellaneous</a></li>
+                                        <li><a href="{{url('/search')}}">Property &amp; Shipping</a></li>
+                                        <li><a href="{{url('/search')}}">Tax, Money &amp; Visas</a></li>
+                                        <li><a href="{{url('/search')}}">Telecoms &amp; Computers</a></li>
+                                        <li><a href="{{url('/search')}}">Travel Services &amp; Tours</a></li>
+                                        <li><a href="{{url('/search')}}">Tuition &amp; Lessons</a></li>
                                     </ul>
                                 </div>
+                                <!--
                                 <div class="cat-list">
                                     <h3 class="cat-title"><a href="category.html"><i
                                                     class="icon-book-open ln-shadow"></i> Learning <span
@@ -141,6 +172,7 @@
                                         <li><a href="category.html"> Other Classes </a></li>
                                     </ul>
                                 </div>
+
                                 <div class="cat-list">
                                     <h3 class="cat-title"><a href="category.html"><i
                                                     class="icon-guidedog ln-shadow"></i> Pets <span
@@ -156,10 +188,47 @@
                                         <li><a href="category.html">Missing, Lost &amp; Found</a></li>
                                     </ul>
                                 </div>
+                                -->
+                                <div class="cat-list">
+                                    <h3 class="cat-title"><a href="{{url('/search')}}"><i class="fa fa-briefcase ln-shadow"></i> Services <span class="count">45,526</span></a>
+                                        <span data-target=".cat-id-4" data-toggle="collapse"
+                                              class="btn-cat-collapsed collapsed">   <span
+                                                    class=" icon-down-open-big"></span> </span>
+                                    </h3>
+                                    <ul class="cat-collapse collapse in cat-id-4">
+                                        <li><a href="{{url('/search')}}">Building, Home &amp; Removals</a></li>
+                                        <li><a href="{{url('/search')}}">Entertainment</a></li>
+                                        <li><a href="{{url('/search')}}">Health &amp; Beauty</a></li>
+                                        <li><a href="{{url('/search')}}">Miscellaneous</a></li>
+                                        <li><a href="{{url('/search')}}">Property &amp; Shipping</a></li>
+                                        <li><a href="{{url('/search')}}">Tax, Money &amp; Visas</a></li>
+                                        <li><a href="{{url('/search')}}">Telecoms &amp; Computers</a></li>
+                                        <li><a href="{{url('/search')}}">Travel Services &amp; Tours</a></li>
+                                        <li><a href="{{url('/search')}}">Tuition &amp; Lessons</a></li>
+                                    </ul>
+                                </div>
+                                <div class="cat-list">
+                                    <h3 class="cat-title"><a href="{{url('/search')}}"><i class="fa fa-briefcase ln-shadow"></i> Services <span class="count">45,526</span></a>
+                                        <span data-target=".cat-id-4" data-toggle="collapse"
+                                              class="btn-cat-collapsed collapsed">   <span
+                                                    class=" icon-down-open-big"></span> </span>
+                                    </h3>
+                                    <ul class="cat-collapse collapse in cat-id-4">
+                                        <li><a href="{{url('/search')}}">Building, Home &amp; Removals</a></li>
+                                        <li><a href="{{url('/search')}}">Entertainment</a></li>
+                                        <li><a href="{{url('/search')}}">Health &amp; Beauty</a></li>
+                                        <li><a href="{{url('/search')}}">Miscellaneous</a></li>
+                                        <li><a href="{{url('/search')}}">Property &amp; Shipping</a></li>
+                                        <li><a href="{{url('/search')}}">Tax, Money &amp; Visas</a></li>
+                                        <li><a href="{{url('/search')}}">Telecoms &amp; Computers</a></li>
+                                        <li><a href="{{url('/search')}}">Travel Services &amp; Tours</a></li>
+                                        <li><a href="{{url('/search')}}">Tuition &amp; Lessons</a></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="col-md-4 col-sm-4   last-column">
                                 <div class="cat-list">
-                                    <h3 class="cat-title"><a href="category.html"><i
+                                    <h3 class="cat-title"><a href="{{url('/search')}}"><i
                                                     class=" icon-basket-1 ln-shadow"></i> For Sale <span
                                                     class="count">64,526</span></a> <span data-target=".cat-id-7"
                                                                                           data-toggle="collapse"
@@ -167,25 +236,21 @@
                                                     class=" icon-down-open-big"></span> </span>
                                     </h3>
                                     <ul class="cat-collapse collapse in cat-id-7">
-                                        <li><a href="category.html">Audio &amp; Stereo</a></li>
-                                        <li><a href="category.html">Baby &amp; Kids Stuff</a></li>
-                                        <li><a href="category.html">CDs, DVDs, Games &amp; Books</a></li>
-                                        <li><a href="category.html">Clothes, Footwear &amp; Accessories</a></li>
-                                        <li><a href="category.html">Computers &amp; Software</a></li>
-                                        <li><a href="category.html">Home &amp; Garden</a></li>
-                                        <li><a href="category.html">Music &amp; Instruments</a></li>
-                                        <li><a href="category.html">Office Furniture &amp; Equipment</a></li>
-                                        <li><a href="category.html">Phones, Mobile Phones &amp; Telecoms</a></li>
-                                        <li><a href="category.html">Sports, Leisure &amp; Travel</a></li>
-                                        <li><a href="category.html">Tickets</a></li>
-                                        <li><a href="category.html">TV, DVD &amp; Cameras</a></li>
-                                        <li><a href="category.html">Video Games &amp; Consoles</a></li>
-                                        <li><a href="category.html">Freebies</a></li>
-                                        <li><a href="category.html">Miscellaneous Goods</a></li>
-                                        <li><a href="category.html">Stuff Wanted</a></li>
-                                        <li><a href="category.html">Swap Shop</a></li>
+                                        <li><a href="{{url('/search')}}">Audio &amp; Stereo</a></li>
+                                        <li><a href="{{url('/search')}}">Baby &amp; Kids Stuff</a></li>
+                                        <li><a href="{{url('/search')}}">CDs, DVDs, Games &amp; Books</a></li>
+                                        <li><a href="{{url('/search')}}">Clothes, Footwear &amp; Accessories</a></li>
+                                        <li><a href="{{url('/search')}}">Computers &amp; Software</a></li>
+                                        <li><a href="{{url('/search')}}">Home &amp; Garden</a></li>
+                                        <li><a href="{{url('/search')}}">Music &amp; Instruments</a></li>
+                                        <li><a href="{{url('/search')}}">Office Furniture &amp; Equipment</a></li>
+                                        <li><a href="{{url('/search')}}">Phones, Mobile Phones &amp; Telecoms</a></li>
+                                        <li><a href="{{url('/search')}}">Sports, Leisure &amp; Travel</a></li>
+                                        <li><a href="{{url('/search')}}">Tickets</a></li>
+                                        <li><a href="{{url('/search')}}">TV, DVD &amp; Cameras</a></li>
                                     </ul>
                                 </div>
+                                <!--
                                 <div class="cat-list ">
                                     <h3 class="cat-title"><a href="category.html"><i
                                                     class=" icon-theatre ln-shadow"></i> Community <span
@@ -200,6 +265,30 @@
                                         <li><a href="category.html">Charity - Donate - NGO </a></li>
                                         <li><a href="category.html">Lost - Found </a></li>
                                         <li><a href="category.html">Tender Notices </a></li>
+                                    </ul>
+                                </div>
+                                -->
+                                <div class="cat-list">
+                                    <h3 class="cat-title"><a href="{{url('/search')}}"><i
+                                                    class=" icon-basket-1 ln-shadow"></i> For Sale <span
+                                                    class="count">64,526</span></a> <span data-target=".cat-id-7"
+                                                                                          data-toggle="collapse"
+                                                                                          class="btn-cat-collapsed collapsed">   <span
+                                                    class=" icon-down-open-big"></span> </span>
+                                    </h3>
+                                    <ul class="cat-collapse collapse in cat-id-7">
+                                        <li><a href="{{url('/search')}}">Audio &amp; Stereo</a></li>
+                                        <li><a href="{{url('/search')}}">Baby &amp; Kids Stuff</a></li>
+                                        <li><a href="{{url('/search')}}">CDs, DVDs, Games &amp; Books</a></li>
+                                        <li><a href="{{url('/search')}}">Clothes, Footwear &amp; Accessories</a></li>
+                                        <li><a href="{{url('/search')}}">Computers &amp; Software</a></li>
+                                        <li><a href="{{url('/search')}}">Home &amp; Garden</a></li>
+                                        <li><a href="{{url('/search')}}">Music &amp; Instruments</a></li>
+                                        <li><a href="{{url('/search')}}">Office Furniture &amp; Equipment</a></li>
+                                        <li><a href="{{url('/search')}}">Phones, Mobile Phones &amp; Telecoms</a></li>
+                                        <li><a href="{{url('/search')}}">Sports, Leisure &amp; Travel</a></li>
+                                        <li><a href="{{url('/search')}}">Tickets</a></li>
+                                        <li><a href="{{url('/search')}}">TV, DVD &amp; Cameras</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -226,7 +315,7 @@
                                         </a>
                                     </div>
 
-                                    <div class="item"><a href="ads-details.html">
+                                    <div class="item"><a href="{{url('/search')}}">
                                         <span class="item-carousel-thumb"> <img class="item-img"
                                                                                 src="images/item/tp/Image00006.jpg"
                                                                                 alt="img"> </span>
@@ -234,14 +323,14 @@
                                             <span class="price"> $ 240 </span></a></div>
 
 
-                                    <div class="item"><a href="ads-details.html">
+                                    <div class="item"><a href="{{url('/search')}}">
                                         <span class="item-carousel-thumb"> <img class="item-img"
                                                                                 src="images/item/tp/Image00022.jpg"
                                                                                 alt="img"> </span> <span
                                                     class="item-name"> sed diam nonummy  </span> <span
                                                     class="price"> $ 140</span></a></div>
 
-                                    <div class="item"><a href="ads-details.html">
+                                    <div class="item"><a href="{{url('/search')}}">
                                         <span class="item-carousel-thumb"> <img class="item-img"
                                                                                 src="images/item/tp/Image00013.jpg"
                                                                                 alt="img">  </span><span
@@ -249,7 +338,7 @@
                                                     class="price"> $ 140 </span></a>
                                     </div>
 
-                                    <div class="item"><a href="ads-details.html">
+                                    <div class="item"><a href="{{url('/search')}}">
                                         <span class="item-carousel-thumb"> <img class="item-img"
                                                                                 src="images/item/FreeGreatPicture.com-46404-google-drops-nexus-4-by-100-offers-15-day-price-protection-refund.jpg"
                                                                                 alt="img"> </span> <span
@@ -257,7 +346,7 @@
                                                     class="price"> $ 220 </span></a>
                                     </div>
 
-                                    <div class="item"><a href="ads-details.html">
+                                    <div class="item"><a href="{{url('/search')}}">
                                         <span class="item-carousel-thumb"> <img class="item-img"
                                                                                 src="images/item/FreeGreatPicture.com-46405-google-drops-price-of-nexus-4-smartphone.jpg"
                                                                                 alt="img"> </span> <span
@@ -265,7 +354,7 @@
                                                     class="price"> $ 120 </span></a>
                                     </div>
 
-                                    <div class="item"><a href="ads-details.html">
+                                    <div class="item"><a href="{{url('/search')}}">
                                         <span class="item-carousel-thumb"> <img class="item-img"
                                                                                 src="images/item/FreeGreatPicture.com-46407-nexus-4-starts-at-199.jpg"
                                                                                 alt="img"> </span> <span
@@ -286,25 +375,25 @@
 
                                     <div class="row">
                                         <ul class="cat-list col-xs-6">
-                                            <li><a href="category.html">Atlanta</a></li>
-                                            <li><a href="category.html">Wichita </a></li>
-                                            <li><a href="category.html"> Anchorage </a></li>
-                                            <li><a href="category.html"> Dallas </a></li>
-                                            <li><a href="category.html"> New York </a></li>
-                                            <li><a href="category.html">Santa Ana/Anaheim </a></li>
-                                            <li><a href="category.html"> Miami </a></li>
-                                            <li><a href="category.html">Los Angeles</a></li>
+                                            <li><a href="{{url('/search')}}">Atlanta</a></li>
+                                            <li><a href="{{url('/search')}}">Wichita </a></li>
+                                            <li><a href="{{url('/search')}}"> Anchorage </a></li>
+                                            <li><a href="{{url('/search')}}"> Dallas </a></li>
+                                            <li><a href="{{url('/search')}}"> New York </a></li>
+                                            <li><a href="{{url('/search')}}">Santa Ana/Anaheim </a></li>
+                                            <li><a href="{{url('/search')}}"> Miami </a></li>
+                                            <li><a href="{{url('/search')}}">Los Angeles</a></li>
                                         </ul>
 
                                         <ul class="cat-list cat-list-border col-xs-6">
-                                            <li><a href="category.html">Virginia Beach </a></li>
-                                            <li><a href="category.html"> San Diego </a></li>
-                                            <li><a href="category.html">Boston </a></li>
-                                            <li><a href="category.html">Houston</a></li>
-                                            <li><a href="category.html">Salt Lake City </a></li>
-                                            <li><a href="category.html">San Francisco </a></li>
-                                            <li><a href="category.html">Tampa </a></li>
-                                            <li><a href="category.html"> Washington DC </a></li>
+                                            <li><a href="{{url('/search')}}">Atlanta</a></li>
+                                            <li><a href="{{url('/search')}}">Wichita </a></li>
+                                            <li><a href="{{url('/search')}}"> Anchorage </a></li>
+                                            <li><a href="{{url('/search')}}"> Dallas </a></li>
+                                            <li><a href="{{url('/search')}}"> New York </a></li>
+                                            <li><a href="{{url('/search')}}">Santa Ana/Anaheim </a></li>
+                                            <li><a href="{{url('/search')}}"> Miami </a></li>
+                                            <li><a href="{{url('/search')}}">Los Angeles</a></li>
 
                                         </ul>
                                     </div>
@@ -316,34 +405,34 @@
 
                                 <div class="row">
                                     <ul class="cat-list col-md-4 col-xs-4 col-xxs-6">
-                                        <li><a href="category.html">free </a></li>
-                                        <li><a href="category.html">furniture </a></li>
-                                        <li><a href="category.html">general </a></li>
-                                        <li><a href="category.html">household </a></li>
-                                        <li><a href="category.html">jewelry </a></li>
-                                        <li><a href="category.html">materials </a></li>
-                                        <li><a href="category.html">sporting </a></li>
-                                        <li><a href="category.html">tickets </a></li>
+                                        <li><a href="{{url('/search')}}">free </a></li>
+                                        <li><a href="{{url('/search')}}">furniture </a></li>
+                                        <li><a href="{{url('/search')}}">general </a></li>
+                                        <li><a href="{{url('/search')}}">household </a></li>
+                                        <li><a href="{{url('/search')}}">jewelry </a></li>
+                                        <li><a href="{{url('/search')}}">materials </a></li>
+                                        <li><a href="{{url('/search')}}">sporting </a></li>
+                                        <li><a href="{{url('/search')}}">tickets </a></li>
                                     </ul>
                                     <ul class="cat-list col-md-4 col-xs-4 col-xxs-6">
-                                        <li><a href="category.html">tools </a></li>
-                                        <li><a href="category.html">wanted </a></li>
-                                        <li><a href="category.html">cell phones </a></li>
-                                        <li><a href="category.html">clothes+acc </a></li>
-                                        <li><a href="category.html">collectibles </a></li>
-                                        <li><a href="category.html">electronics </a></li>
-                                        <li><a href="category.html">farm+garden </a></li>
-                                        <li><a href="category.html">garage sale </a></li>
+                                        <li><a href="{{url('/search')}}">free </a></li>
+                                        <li><a href="{{url('/search')}}">furniture </a></li>
+                                        <li><a href="{{url('/search')}}">general </a></li>
+                                        <li><a href="{{url('/search')}}">household </a></li>
+                                        <li><a href="{{url('/search')}}">jewelry </a></li>
+                                        <li><a href="{{url('/search')}}">materials </a></li>
+                                        <li><a href="{{url('/search')}}">sporting </a></li>
+                                        <li><a href="{{url('/search')}}">tickets </a></li>
                                     </ul>
                                     <ul class="cat-list col-md-4 col-xs-4 col-xxs-6">
-                                        <li><a href="category.html">heavy equip </a></li>
-                                        <li><a href="category.html">motorcycles </a></li>
-                                        <li><a href="category.html">music instr </a></li>
-                                        <li><a href="category.html">photo+video </a></li>
-                                        <li><a href="category.html">appliances </a></li>
-                                        <li><a href="category.html">Land </a></li>
-                                        <li><a href="category.html">arts+crafts </a></li>
-                                        <li><a href="category.html">auto parts </a></li>
+                                        <li><a href="{{url('/search')}}">free </a></li>
+                                        <li><a href="{{url('/search')}}">furniture </a></li>
+                                        <li><a href="{{url('/search')}}">general </a></li>
+                                        <li><a href="{{url('/search')}}">household </a></li>
+                                        <li><a href="{{url('/search')}}">jewelry </a></li>
+                                        <li><a href="{{url('/search')}}">materials </a></li>
+                                        <li><a href="{{url('/search')}}">sporting </a></li>
+                                        <li><a href="{{url('/search')}}">tickets </a></li>
                                     </ul>
 
                                 </div>
@@ -363,18 +452,18 @@
 
                             <div class="inner-box-content">
                                 <ul class="cat-list arrow">
-                                    <li><a href="sub-category-sub-location.html"> Apparel (1,386) </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Art (1,163) </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Business Opportunities (4,974) </a>
+                                    <li><a href="{{url('/search')}}"> Apparel (1,386) </a></li>
+                                    <li><a href="{{url('/search')}}"> Art (1,163) </a></li>
+                                    <li><a href="{{url('/search')}}"> Business Opportunities (4,974) </a>
                                     </li>
-                                    <li><a href="sub-category-sub-location.html"> Community and Events (1,258) </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Electronics and Appliances
+                                    <li><a href="{{url('/search')}}"> Community and Events (1,258) </a></li>
+                                    <li><a href="{{url('/search')}}"> Electronics and Appliances
                                             (1,578) </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Jobs and Employment (3,609) </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Motorcycles (968) </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Pets (1,188) </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Services (7,583) </a></li>
-                                    <li><a href="sub-category-sub-location.html"> Vehicles (1,129) </a></li>
+                                    <li><a href="{{url('/search')}}"> Jobs and Employment (3,609) </a></li>
+                                    <li><a href="{{url('/search')}}"> Motorcycles (968) </a></li>
+                                    <li><a href="{{url('/search')}}"> Pets (1,188) </a></li>
+                                    <li><a href="{{url('/search')}}"> Services (7,583) </a></li>
+                                    <li><a href="{{url('/search')}}"> Vehicles (1,129) </a></li>
                                 </ul>
                             </div>
                         </div>

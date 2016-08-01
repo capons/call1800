@@ -5,7 +5,7 @@
 Route::get('toll/buy', 'Tollfree\BuytollController@index');          //buy toll free number
 Route::post('toll/buy', 'Tollfree\BuytollController@store');
 
-Route::get('toll/confirm','TollFree\ConfirmController@index');     //confirm payment
+Route::get('toll/confirm','Tollfree\ConfirmController@index');     //confirm payment
 //Route::post('toll/confirm','TollFree\ConfirmController@store');
 /*******  PayPal routes*/
 Route::post('paycheck','Payment\PaypalController@getCheckout');                //pay via PayPal

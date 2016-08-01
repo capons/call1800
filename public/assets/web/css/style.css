@@ -20,5 +20,8 @@
 .no-border {
     border: none !important;
 }
+.fps_input_toggle {
+    display: none;
+}
 
 
