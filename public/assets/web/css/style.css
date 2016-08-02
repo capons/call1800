@@ -1,6 +1,4 @@
 
-
-
 .al-center {
     margin: 0 auto;
     float: none;
@@ -23,5 +21,12 @@
 .fps_input_toggle {
     display: none;
 }
+.sb-hide {
+    display: none;
+}
+.sbb-hide {
+    display: none;
+}
+
 
 

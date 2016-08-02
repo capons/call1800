@@ -160,7 +160,7 @@
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="Price">@lang('site/tollfreepage/site.tollreg.regform.web')</label>
                                             <div class="col-md-8">
-                                                <input id="Adtitle" name="web-number" value="18004456325"  placeholder="Phone number" class="form-control input-md" required type="number">
+                                                <input  name="web-number"  placeholder="Phone number" class="form-control input-md" required type="number">
                                             </div>
                                         </div>
 
@@ -168,7 +168,7 @@
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="Price">@lang('site/tollfreepage/site.tollreg.regform.number')</label>
                                             <div class="col-md-8">
-                                                <input id="Adtitle" name="toll-number" value="18001234567"  placeholder="Phone number" class="form-control input-md" required type="number">
+                                                <input  name="toll-number"   placeholder="Phone number" class="form-control input-md" required type="number">
                                             </div>
                                         </div>
 

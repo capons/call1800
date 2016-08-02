@@ -200,5 +200,5 @@
         </div>
     </div>
 
-
+@include('common.errors')
 @stop

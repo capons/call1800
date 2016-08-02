@@ -82,13 +82,15 @@ class PaypalController extends Controller
     */
     public function getCheckout(Request $request)
     {
+
+
         $validator = Validator::make($request->all(), [
             'ctfn_type' => 'integer',
             'ctfn_pay_type' => 'integer',
             'ctfn_prefix' => 'integer',
-            'ctfn_min' => 'integer',
+            //'ctfn_min' => 'integer',
             'ctfn_month_count' => 'integer',
-            'ctfn_price' => 'integer',
+            'ctfn_price' => 'numeric',
             'c_user_id' => 'integer',
         ]);
 
@@ -100,119 +102,270 @@ class PaypalController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+
+        switch ($request->input('ctfn_type')) {
+            case 1:
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');  //Или все это поместить в метод  getDone и в нем если success то сохранять в базу данных
+                DB::beginTransaction();      //update table request and promise by Transaction
+                try {
+                    $to_change = '+ ' . ($request->input('ctfn_month_count') * 30) . ' day';
+                    $date = date("Y-m-d H:i:s");
+                    $date = strtotime($date);
+                    $date = strtotime($to_change, $date); //date in future when auction is expired
+                    $buyrollfree = Buytollfree::create(['user_id' => $request->input('c_user_id'), 'plan_type' => $request->input('ctfn_type'), 'month_count' => $request->input('ctfn_month_count'), 'expires' => date("Y-m-d H:i:s", $date), 'minute' => $request->input('ctfn_min')]);
+
+                } catch (ValidationException $e) {
+                    DB::rollback();
+                    return Redirect::to('promise/buy')
+                        ->withErrors($e->getErrors())
+                        ->withInput();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+                try {
+                    $prefix = Prefix::create(['buytollfree_id' => $buyrollfree->id, 'prefix' => $request->input('ctfn_prefix')]);
+
+                } catch (ValidationException $e) {
+                    DB::rollback();
+                    return Redirect::to('promise/buy')
+                        ->withErrors($e->getErrors())
+                        ->withInput();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+                try {
+                    $payment = Payment::create(['buytollfree_id' => $buyrollfree->id, 'payment_status' => 'not paid', 'payment_type' => 'paypal', 'price' => $request->input('ctfn_price')]);
+
+                } catch (ValidationException $e) {
+                    DB::rollback();
+                    return Redirect::to('promise/buy')
+                        ->withErrors($e->getErrors())
+                        ->withInput();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+                DB::commit();
+                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+
+                $payer = PayPal::Payer();
+
+                $payer->setPaymentMethod('paypal');
+
+
+                $amount = PayPal:: Amount();
+
+                $amount->setCurrency('USD');
+
+                $amount->setTotal($request->input('ctfn_price'));
+
+
+                $transaction = PayPal::Transaction();
+
+                $transaction->setAmount($amount);
+
+                $transaction->setDescription('Buy Premium ' . $request->input('ctfn_type') . ' Plan on ' . $request->input('ctfn_price'));
+
+
+                $redirectUrls = PayPal:: RedirectUrls();
+
+
+                //$redirectUrls->setReturnUrl(route('getdone'));
+                //$redirectUrls->setReturnUrl('http://localhost/bogdan/call1800/en/getdone');
+                $locali = new LaravelLocalization(); //localization instance class
+                $redirectUrls->setReturnUrl(url($locali->setLocale() . '/getdone/' . $buyrollfree->id)); //redirect to payment success url with localization => $buyrollfree->id last inser id send to method getDone
+
+                //$redirectUrls->setCancelUrl(route('getcancel'));
+                $redirectUrls->setCancelUrl(url($locali->setLocale() . '/getcancel')); //redirect to cancel payment with localization
+
+
+                $payment = PayPal::Payment();
+
+                $payment->setIntent('sale');
+
+                $payment->setPayer($payer);
+
+                $payment->setRedirectUrls($redirectUrls);
+
+                $payment->setTransactions(array($transaction));
+
+
+                $response = $payment->create($this->_apiContext);
+
+                $redirectUrl = $response->links[1]->href;
+
+
+                return redirect()->to($redirectUrl);
+                break;
+            case 2:   //if check pay per minut
+                    //  echo '<pre>';
+               // print_r($request->all());
+                   //   echo '<pre>';
+                //die();
+
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');  //Или все это поместить в метод  getDone и в нем если success то сохранять в базу данных
+                DB::beginTransaction();      //update table request and promise by Transaction
+                try {
+                    /*
+                    $to_change = '+ ' . ($request->input('ctfn_month_count') * 30) . ' day';
+                    $date = date("Y-m-d H:i:s");
+                    $date = strtotime($date);
+                    $date = strtotime($to_change, $date); //date in future when auction is expired
+                    */
+                    $buyrollfree = Buytollfree::create(['user_id' => $request->input('c_user_id'), 'plan_type' => $request->input('ctfn_type'), 'month_count' => $request->input('ctfn_month_count')]);
+
+                } catch (ValidationException $e) {
+                    DB::rollback();
+                    return Redirect::to('promise/buy')
+                        ->withErrors($e->getErrors())
+                        ->withInput();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+                try {
+                    $prefix = Prefix::create(['buytollfree_id' => $buyrollfree->id, 'prefix' => $request->input('ctfn_prefix')]);
+
+                } catch (ValidationException $e) {
+                    DB::rollback();
+                    return Redirect::to('promise/buy')
+                        ->withErrors($e->getErrors())
+                        ->withInput();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+                try {
+                    $payment = Payment::create(['buytollfree_id' => $buyrollfree->id, 'payment_status' => 'not paid', 'payment_type' => 'paypal', 'price' => $request->input('ctfn_price')]);
+
+                } catch (ValidationException $e) {
+                    DB::rollback();
+                    return Redirect::to('promise/buy')
+                        ->withErrors($e->getErrors())
+                        ->withInput();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    throw $e;
+                }
+                DB::commit();
+                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+                Session::flash('user-info', Lang::get('site/payment/site.paypal.success')); //send message to user via flash data
+                session()->forget('tf_buy'); //destroy session -> send buytollfree data to buy
+                return redirect('/success');
+
+
+                break;
+        }
         /*
-        echo '<pre>';
-        print_r($request->all());
-        echo '</pre>';
+        if($request->input('ctfn_type') == 1) {
+
+            // echo $buyrollfree->id;
+            // die();
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');  //Или все это поместить в метод  getDone и в нем если success то сохранять в базу данных
+            DB::beginTransaction();      //update table request and promise by Transaction
+            try {
+                $to_change = '+ ' . ($request->input('ctfn_month_count') * 30) . ' day';
+                $date = date("Y-m-d H:i:s");
+                $date = strtotime($date);
+                $date = strtotime($to_change, $date); //date in future when auction is expired
+                $buyrollfree = Buytollfree::create(['user_id' => $request->input('c_user_id'), 'plan_type' => $request->input('ctfn_type'), 'month_count' => $request->input('ctfn_month_count'), 'expires' => date("Y-m-d H:i:s", $date), 'minute' => $request->input('ctfn_min')]);
+
+            } catch (ValidationException $e) {
+                DB::rollback();
+                return Redirect::to('promise/buy')
+                    ->withErrors($e->getErrors())
+                    ->withInput();
+            } catch (\Exception $e) {
+                DB::rollback();
+                throw $e;
+            }
+            try {
+                $prefix = Prefix::create(['buytollfree_id' => $buyrollfree->id, 'prefix' => $request->input('ctfn_prefix')]);
+
+            } catch (ValidationException $e) {
+                DB::rollback();
+                return Redirect::to('promise/buy')
+                    ->withErrors($e->getErrors())
+                    ->withInput();
+            } catch (\Exception $e) {
+                DB::rollback();
+                throw $e;
+            }
+            try {
+                $payment = Payment::create(['buytollfree_id' => $buyrollfree->id, 'payment_status' => 'not paid', 'payment_type' => 'paypal', 'price' => $request->input('ctfn_price')]);
+
+            } catch (ValidationException $e) {
+                DB::rollback();
+                return Redirect::to('promise/buy')
+                    ->withErrors($e->getErrors())
+                    ->withInput();
+            } catch (\Exception $e) {
+                DB::rollback();
+                throw $e;
+            }
+            DB::commit();
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+
+            $payer = PayPal::Payer();
+
+            $payer->setPaymentMethod('paypal');
+
+
+            $amount = PayPal:: Amount();
+
+            $amount->setCurrency('USD');
+
+            $amount->setTotal($request->input('ctfn_price'));
+
+
+            $transaction = PayPal::Transaction();
+
+            $transaction->setAmount($amount);
+
+            $transaction->setDescription('Buy Premium ' . $request->input('ctfn_type') . ' Plan on ' . $request->input('ctfn_price'));
+
+
+            $redirectUrls = PayPal:: RedirectUrls();
+
+
+            //$redirectUrls->setReturnUrl(route('getdone'));
+            //$redirectUrls->setReturnUrl('http://localhost/bogdan/call1800/en/getdone');
+            $locali = new LaravelLocalization(); //localization instance class
+            $redirectUrls->setReturnUrl(url($locali->setLocale() . '/getdone/' . $buyrollfree->id)); //redirect to payment success url with localization => $buyrollfree->id last inser id send to method getDone
+
+            //$redirectUrls->setCancelUrl(route('getcancel'));
+            $redirectUrls->setCancelUrl(url($locali->setLocale() . '/getcancel')); //redirect to cancel payment with localization
+
+
+            $payment = PayPal::Payment();
+
+            $payment->setIntent('sale');
+
+            $payment->setPayer($payer);
+
+            $payment->setRedirectUrls($redirectUrls);
+
+            $payment->setTransactions(array($transaction));
+
+
+            $response = $payment->create($this->_apiContext);
+
+            $redirectUrl = $response->links[1]->href;
+
+
+            return redirect()->to($redirectUrl);
+        } elseif($request->input('ctfn_type') == 2){
+            print_r($request->all());
+            die();
+        }
         */
 
-        
-        
-
-
-       // echo $buyrollfree->id;
-       // die();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');  //Или все это поместить в метод  getDone и в нем если success то сохранять в базу данных
-        DB::beginTransaction();      //update table request and promise by Transaction
-        try {
-            $to_change = '+ '.($request->input('ctfn_month_count')*30).' day';
-            $date = date("Y-m-d H:i:s");
-            $date = strtotime($date);
-            $date = strtotime($to_change, $date); //date in future when auction is expired
-            $buyrollfree = Buytollfree::create(['user_id' => $request->input('c_user_id'), 'plan_type' => $request->input('ctfn_type'), 'month_count' => $request->input('ctfn_month_count'), 'expires' => date("Y-m-d H:i:s",$date), 'minute' => $request->input('ctfn_min')]);
-
-        } catch (ValidationException $e) {
-            DB::rollback();
-            return Redirect::to('promise/buy')
-                ->withErrors( $e->getErrors() )
-                ->withInput();
-        } catch (\Exception $e) {
-            DB::rollback();
-            throw $e;
-        }
-        try {
-            $prefix = Prefix::create(['buytollfree_id' => $buyrollfree->id, 'prefix' => $request->input('ctfn_prefix')]);
-
-        } catch (ValidationException $e) {
-            DB::rollback();
-            return Redirect::to('promise/buy')
-                ->withErrors( $e->getErrors() )
-                ->withInput();
-        } catch (\Exception $e) {
-            DB::rollback();
-            throw $e;
-        }
-        try {
-            $payment = Payment::create(['buytollfree_id' => $buyrollfree->id, 'payment_status' => 'not paid', 'payment_type' => 'paypal', 'price' => $request->input('ctfn_price')]);
-
-        } catch (ValidationException $e) {
-            DB::rollback();
-            return Redirect::to('promise/buy')
-                ->withErrors( $e->getErrors() )
-                ->withInput();
-        } catch (\Exception $e) {
-            DB::rollback();
-            throw $e;
-        }
-        DB::commit();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-
-
-
-
-
-        $payer = PayPal::Payer();
-
-        $payer->setPaymentMethod('paypal');
-
-
-        $amount = PayPal:: Amount();
-
-        $amount->setCurrency('USD');
-
-        $amount->setTotal($request->input('ctfn_price'));
-
-
-        $transaction = PayPal::Transaction();
-
-        $transaction->setAmount($amount);
-
-        $transaction->setDescription('Buy Premium '.$request->input('ctfn_type').' Plan on '.$request->input('ctfn_price'));
-
-
-        $redirectUrls = PayPal:: RedirectUrls();
-
-
-
-        //$redirectUrls->setReturnUrl(route('getdone'));
-        //$redirectUrls->setReturnUrl('http://localhost/bogdan/call1800/en/getdone');
-        $locali = new LaravelLocalization(); //localization instance class
-        $redirectUrls->setReturnUrl(url($locali->setLocale().'/getdone/'.$buyrollfree->id)); //redirect to payment success url with localization => $buyrollfree->id last inser id send to method getDone
-
-        //$redirectUrls->setCancelUrl(route('getcancel'));
-        $redirectUrls->setCancelUrl(url($locali->setLocale().'/getcancel')); //redirect to cancel payment with localization
-
-
-        $payment = PayPal::Payment();
-
-        $payment->setIntent('sale');
-
-        $payment->setPayer($payer);
-
-        $payment->setRedirectUrls($redirectUrls);
-
-        $payment->setTransactions(array($transaction));
-
-
-        $response = $payment->create($this->_apiContext);
-
-        $redirectUrl = $response->links[1]->href;
-
-
-
-
-        return redirect()->to( $redirectUrl );
 
         //session()->forget('tf_buy');
     }
@@ -270,7 +423,9 @@ class PaypalController extends Controller
         } else {
             //if payment false
             //save to log
-            echo 'проплата прошла не успешно';
+
+
+
         }
 
     }

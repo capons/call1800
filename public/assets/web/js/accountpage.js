@@ -72,8 +72,27 @@ var front_page = (function () {
             console.log('test');
             $('#fsf-input').keyup(function(){
                 var input_val = $('#fsf-input').val();
-                if($.isNumeric(input_val) && input_val.length == 11){
-                    console.log('correct number');
+                if(input_val.length > 0) {
+                    $('#f-call').addClass("sbb-hide");
+                    $('#container-call').addClass("sbb-hide");
+                    $('#container-find').css("border", "none");
+                    if ($.isNumeric(input_val) && input_val.length == 11) {
+                        console.log('correct number');
+                        $('#f-find').toggleClass("sb-hide");
+                        $('#container-find').toggleClass("sb-hide");
+                        $('#f-call').toggleClass("sbb-hide");
+                        $('#container-call').toggleClass("sbb-hide");
+                    } else {
+                        if ($(".sb-hide")[0]) { //if class exist
+                            $('#f-find').toggleClass("sb-hide");
+                            $('#container-find').toggleClass("sb-hide");
+
+                        }
+                    }
+                } else {
+                    $('#f-call').toggleClass("sbb-hide");
+                    $('#container-call').toggleClass("sbb-hide");
+                    $('#container-find').css("border-right", "solid 1px antiquewhite");
                 }
             });
         },

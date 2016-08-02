@@ -78,7 +78,7 @@
                                                 <input type="hidden" name="tfn_prefix" value="">
                                                 <input type="hidden" name="tfn_min" value="">
                                                 <input type="hidden" name="tfn_month_count" value="1">
-                                                <input type="hidden" name="tfn_price" value="0.015">
+                                                <input type="hidden" name="tfn_price" value=<?php echo 0.015; ?>>
                                                 <input type="hidden" name="user_id" value="<?php echo Auth::user()->id; ?>">
                                                 <button type="submit" class="btn btn-primary">Buy</button>
                                             </form>

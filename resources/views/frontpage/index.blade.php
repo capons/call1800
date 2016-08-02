@@ -30,10 +30,10 @@
                                 <input id="fsf-input"  type="text" name="sc_name" class="form-control has-icon" placeholder="I'm looking for a ..." value="">
                             </div>
                             <div class="col-lg-6 col-sm-6 search-col">
-                                <div style="border-right: 1px solid antiquewhite;" class="col-lg-6 col-sm-6 no-padding">
+                                <div id="container-find" style="border-right: 1px solid antiquewhite;" class="col-lg-6 col-sm-6 no-padding">
                                     <button id="f-find" type="submit" style="border-radius: 0px" class="btn btn-primary btn-find-f btn-block"><i class="icon-search"></i><strong>Find</strong></button>
                                 </div>
-                                <div class="col-lg-6 col-sm-6 no-padding">
+                                <div id="container-call" class="col-lg-6 col-sm-6 no-padding">
                                     <button id="f-call" type="submit" class="btn btn-primary btn-search btn-block"><i class="icon-search"></i><strong>Call Now</strong></button>
                                 </div>
                             </div>

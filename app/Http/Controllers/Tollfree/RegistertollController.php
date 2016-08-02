@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 use Illuminate\Support\Facades\Lang;
-use App\Models\DB\Company;
+use App\Models\DB\Companys;
 use Illuminate\Support\Facades\Session;
 
 class RegistertollController extends Controller
@@ -22,11 +22,13 @@ class RegistertollController extends Controller
     {
         $messages = [ //validation message
             'company-name.required' => 'Company name is required!',
-            'toll-number.required' => 'Number is required!',
+            'toll-number.required' => 'Toll number is required!',
+            'web-number.required' => 'Web number is required!',
         ];
         return Validator::make($data, [   //validation registration form
             'company-name' => 'required|min:3|max:50',
-            'toll-number' => 'required|min:3|max:50',
+            'toll-number' => 'required|min:3|max:20',
+            'web-number' => 'required|min:3|max:20',
             'checkbox' => 'required'
         ],$messages);
     }
@@ -59,7 +61,8 @@ class RegistertollController extends Controller
      */
     public function store(Request $request)
     {
-      
+
+
 
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
@@ -86,7 +89,8 @@ class RegistertollController extends Controller
      * @return mixed
      */
     protected function add(array $data){ //save data to database
-        $new_company = Company::create(['name' => $data['company-name'], 'description' => $data['company-desc'], 'category' => $data['category-name'],'web-number' => $data['web-number'],'number' => $data['toll-number']]);
+
+        $new_company = Companys::create(['name' => 'ИМЯ КОМПАНИИ', 'description' => $data['company-desc'], 'category' => $data['category-name'],'web-number' => $data['web-number'],'number' => $data['toll-number']]);
         return $new_company;
 
     }

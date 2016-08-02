@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('buytollfree_id')->unsigned()->index();
             $table->string('payment_status')->nullable();
             $table->string('payment_type')->nullable();
-            $table->integer('price')->nullable();
+            $table->float('price')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign('buytollfree_id')->references('id')->on('buytollfree');
