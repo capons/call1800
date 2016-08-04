@@ -68,31 +68,41 @@ var front_page = (function () {
         main.add_init_callback(this.search_button_change);
     };
     doConstruct.prototype = {
-        search_button_change: function () { //disable buy button
-            console.log('test');
+        search_button_change: function () { //change search bar button
             $('#fsf-input').keyup(function(){
                 var input_val = $('#fsf-input').val();
-                if(input_val.length > 0) {
-                    $('#f-call').addClass("sbb-hide");
-                    $('#container-call').addClass("sbb-hide");
-                    $('#container-find').css("border", "none");
-                    if ($.isNumeric(input_val) && input_val.length == 11) {
-                        console.log('correct number');
-                        $('#f-find').toggleClass("sb-hide");
-                        $('#container-find').toggleClass("sb-hide");
-                        $('#f-call').toggleClass("sbb-hide");
-                        $('#container-call').toggleClass("sbb-hide");
+                var find_button = $('#container-find');
+                var call_button = $('#container-call');
+                var search_bar_container = $('#msi');
+                var button_container = $('#msi-b');
+                var search_input_container = $('#container-si');
+
+                if(input_val.length >= 1) {   //if some one enter value in search bar
+                    search_bar_container.removeClass('default-search-bar');
+                    search_bar_container.addClass('front-search-bar-center');
+                    button_container.removeClass('hide-search-button');
+                    button_container.addClass('front-search-button-container');
+                    search_input_container.addClass('container-si');
+                    call_button.addClass("sbb-hide");
+                    find_button.css("border", "none");
+                    if ($.isNumeric(input_val) && input_val.length == 11) { // only number 1800 + 7 digits
+                        find_button.addClass("sb-hide");
+                        call_button.toggleClass("sbb-hide");
                     } else {
                         if ($(".sb-hide")[0]) { //if class exist
-                            $('#f-find').toggleClass("sb-hide");
-                            $('#container-find').toggleClass("sb-hide");
-
+                            find_button.removeClass("sb-hide");
+                            call_button.addClass("sbb-hide");
                         }
                     }
                 } else {
-                    $('#f-call').toggleClass("sbb-hide");
-                    $('#container-call').toggleClass("sbb-hide");
-                    $('#container-find').css("border-right", "solid 1px antiquewhite");
+                    call_button.removeClass("sbb-hide");
+                    find_button.css("border-right", "solid 1px antiquewhite");
+                    search_bar_container.addClass('default-search-bar');
+                    search_bar_container.removeClass('front-search-bar-center');
+                    button_container.addClass('hide-search-button');
+                    search_input_container.removeClass('container-si');
+                    button_container.removeClass('front-search-button-container');
+
                 }
             });
         },

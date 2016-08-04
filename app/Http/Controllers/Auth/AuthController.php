@@ -104,7 +104,7 @@ class AuthController extends Controller
         $link_to_active = Config::get('app.url').'/auth/active'.'?hash='.$this->hash.'&id='.$this->last_id; //send variable to mail view
         Mail::send('mail.index', ['link' => $link_to_active], function ($m) use ($user) {
             $m->from('hello@app.com', 'Your Application');
-            $m->to($user->email, $user->name)->subject(Config::get('app.url').'/auth/active' . '?hash=' . $this->hash . '&id=' . $this->last_id . ''); //send to email link to activate account
+            $m->to($user->email, $user->name)->subject('Please activate your account on the call1800'); //send to email link to activate account
         });
         Session::flash('user-info', Lang::get('site/authpage/site.registration.success_reg')); //send message to user via flash data
         //return redirect($this->redirectPath());                         //redirect controller set in protected $redirectTo = '/';

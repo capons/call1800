@@ -12,7 +12,9 @@
 if(isset($link)){
 ?>
 @if(count($link) > 0)
-    <p>{{$link}}</p>
+    <div style="position: relative;height: 100px;width: 100%;display: block;text-align: center;margin-top: 50px;">
+        <a style="height: 50px;background-color: #00a5bb;padding: 20px;text-decoration: none" href="{{$link}}">Click to activate your account</a>
+    </div>
 @endif
 <?php
 }

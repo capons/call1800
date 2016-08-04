@@ -21,7 +21,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{!! asset('public/assets/web/frontTheme/assets/css/style.css') !!}" rel="stylesheet">
-    <link href="{!! asset('public/assets/web/css/style.css') !!}" rel="stylesheet" type="text/css">
+    <link href="{!! asset('public/assets/web/css/app.css') !!}" rel="stylesheet" type="text/css">
 
 
     <!-- styles needed for carousel slider -->

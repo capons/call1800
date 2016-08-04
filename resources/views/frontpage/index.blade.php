@@ -25,18 +25,29 @@
                         -->
                         <form id="fsf" action="{{action('Search\SearchController@filter')}}" method="post">
                             {!! csrf_field() !!}
+                            <!-- default-search-bar   hide-search-button-->
 
-                            <div class="col-lg-6 col-sm-6 search-col relative"><i class="icon-docs icon-append"></i>
-                                <input id="fsf-input"  type="text" name="sc_name" class="form-control has-icon" placeholder="I'm looking for a ..." value="">
-                            </div>
-                            <div class="col-lg-6 col-sm-6 search-col">
-                                <div id="container-find" style="border-right: 1px solid antiquewhite;" class="col-lg-6 col-sm-6 no-padding">
-                                    <button id="f-find" type="submit" style="border-radius: 0px" class="btn btn-primary btn-find-f btn-block"><i class="icon-search"></i><strong>Find</strong></button>
+
+
+                            <div id="msi" class="col-lg-8 col-sm-8 search-col relative default-search-bar"><i class="icon-docs icon-append"></i>
+                                <div id="container-si">
+                                    <input id="fsf-input"  type="text" name="sc_number"  class="form-control has-icon" placeholder="I'm looking for a ..." value="">
                                 </div>
-                                <div id="container-call" class="col-lg-6 col-sm-6 no-padding">
-                                    <button id="f-call" type="submit" class="btn btn-primary btn-search btn-block"><i class="icon-search"></i><strong>Call Now</strong></button>
+
+                                <!-- col-lg-6 col-sm-6 -->
+                                <div id="msi-b" class="col-lg-3 search-col hide-search-button">
+                                    <div id="container-find" style="border-right: 1px solid antiquewhite;" class="col-lg-12 col-sm-12 no-padding">
+                                        <button id="f-find" type="submit" style="border-radius: 0px" class="btn btn-primary btn-find-f btn-block"><i class="icon-search"></i><strong>Find</strong></button>
+                                    </div>
+                                    <div id="container-call" class="col-lg-12 col-sm-12 no-padding">
+                                        <button id="f-call" type="submit" class="btn btn-primary btn-search btn-block"><i class="icon-search"></i><strong>Call Now</strong></button>
+                                    </div>
                                 </div>
+
                             </div>
+
+
+
                         </form>
                     </div>
 

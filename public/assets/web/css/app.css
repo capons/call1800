@@ -1,0 +1,59 @@
+/*front page*/
+.default-search-bar {
+  float: none;
+  margin: 0 auto; }
+
+.hide-search-button {
+  display: none; }
+
+.front-search-bar-center {
+  float: none;
+  margin: 0 auto;
+  display: table; }
+
+.container-si {
+  float: left;
+  width: 70%; }
+  @media (max-width: 769px) {
+    .container-si {
+      float: left;
+      width: 100%; } }
+
+@media (max-width: 769px) {
+  #msi-b {
+    width: 100%; } }
+
+.front-search-button-container {
+  float: left;
+  width: 30%; }
+
+/* ./front page*/
+.al-center {
+  margin: 0 auto;
+  float: none;
+  display: table; }
+
+.no-padding {
+  padding: 0px; }
+
+.btn-find-f {
+  font-size: 18px;
+  height: 48px; }
+
+.table-center {
+  text-align: center;
+  vertical-align: middle !important; }
+
+.no-border {
+  border: none !important; }
+
+.fps_input_toggle {
+  display: none; }
+
+.sb-hide {
+  display: none; }
+
+.sbb-hide {
+  display: none; }
+
+/*# sourceMappingURL=app.css.map */

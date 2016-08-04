@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Models\DB\Company;
+use App\Models\DB\Companys;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,11 +21,11 @@ class SearchController extends Controller
     protected function validator(array $data)
     {
         $messages = [ //validation message
-            'sc_number.numeric' => 'Toll Free Number must be integer!',
+         //   'sc_number.numeric' => 'Toll Free Number must be integer!',
         ];
         return Validator::make($data, [   //validation registration form
 
-            'sc_number' => 'numeric',
+          //  'sc_number' => 'numeric',
         ],$messages);
     }
     /**
@@ -35,6 +35,7 @@ class SearchController extends Controller
      */
     public function index()
     {
+
         $search_data = null; //default select all data and display
         return view ('search.index',['search_data' => $search_data]);
     }
@@ -67,23 +68,34 @@ class SearchController extends Controller
     public function filter(Request $request) //display filter data
     {
 
+
+
             $validator = $this->validator($request->all());
             if ($validator->fails()) { //if true display error
                 return redirect('/search')
                     ->withInput()
                     ->withErrors($validator); //set validation error name to display in error layout  views/common/errors.blade.php
             } else {
-                $userdata_email = array( //login via email by client
-                    'email' => Input::get('l_email'),  //email -> database row name
-                    'password' => Input::get('l_pass')//password -> database row name
-                );
-                $search_data = Company::where('name', 'LIKE', Input::get('sc_name'))
-                    ->orWhere('category', 'LIKE', Input::get('sc_category'))
-                    ->orWhere('number', 'LIKE', Input::get('sc_number'))
-                    ->get();
+                if(empty(Input::get('sc_name')) && empty(Input::get('sc_category'))){ //if search resoult from frontpage
+                    $inptut_data = Input::get('sc_number');
+                    if (is_numeric($inptut_data)) {                                           //if numeric data
+                        $search_data = Companys::where('number', '=', $inptut_data)
+                            ->get();
+                    } else {                                                                //if string data
+
+                        $search_data = Companys::where('name', '=', $inptut_data)
+                            ->get();
+                    }
+
+                } else {                                              //if search request from (/search) routes
+                    $search_data = Companys::where('name', '=', Input::get('sc_name'))
+                        ->orWhere('category', '=', Input::get('sc_category'))
+                        ->orWhere('number', '=', Input::get('sc_number'))
+                        ->get();
+                }
+
 
             }
-
             return view('search.index', ['search_data' => $search_data]);
 
     }

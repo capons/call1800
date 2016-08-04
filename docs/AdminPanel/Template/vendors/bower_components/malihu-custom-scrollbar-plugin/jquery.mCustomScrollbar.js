@@ -274,7 +274,7 @@ and dependencies (minified).
 				autoScrollOnFocus:"input,textarea,select,button,datalist,keygen,a[tabindex],area,object,[contenteditable='true']",
 				/*
 				auto-update scrollbars on content, element or viewport resize 
-				should be true for fluid layouts/elements, adding/removing content dynamically, hiding/showing elements, content with images etc. 
+				should be true for fluid _layouts/elements, adding/removing content dynamically, hiding/showing elements, content with images etc.
 				values: boolean
 				*/
 				updateOnContentResize:true,
@@ -589,7 +589,7 @@ and dependencies (minified).
 							}
 						}
 						
-						_autoUpdate.call(this); /* initialize automatic updating (for dynamic content, fluid layouts etc.) */
+						_autoUpdate.call(this); /* initialize automatic updating (for dynamic content, fluid _layouts etc.) */
 						
 					}
 					
