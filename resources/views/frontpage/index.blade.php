@@ -40,7 +40,7 @@
                                         <button id="f-find" type="submit" style="border-radius: 0px" class="btn btn-primary btn-find-f btn-block"><i class="icon-search"></i><strong>Find</strong></button>
                                     </div>
                                     <div id="container-call" class="col-lg-12 col-sm-12 no-padding">
-                                        <button id="f-call" type="submit" class="btn btn-primary btn-search btn-block"><i class="icon-search"></i><strong>Call Now</strong></button>
+                                        <button id="f-call" type="submit" class="btn btn-primary btn-search btn-block"><i style="top: 3px;right: 2px;" class="glyphicon glyphicon-earphone"></i><strong>Call Now</strong></button>
                                     </div>
                                 </div>
 

@@ -47,6 +47,8 @@
 
     <!--default js -->
     <script src="{!! asset('public/assets/web/js/accountpage.js') !!}"></script>
+    <script src="{!! asset('public/assets/web/js/stripe_payment.js') !!}"></script>
+
 
 
 
@@ -248,13 +250,13 @@
 
 
 <!-- include jquery autocomplete plugin  -->
-
+<!--
 <script type="text/javascript" src="{!! asset('public/assets/web/frontTheme/assets/plugins/autocomplete/jquery.mockjax.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('public/assets/web/frontTheme/assets/plugins/autocomplete/jquery.autocomplete.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('public/assets/web/frontTheme/assets/plugins/autocomplete/usastates.js') !!}"></script>
 
 <script type="text/javascript" src="{!! asset('public/assets/web/frontTheme/assets/plugins/autocomplete/autocomplete-demo.js') !!}"></script>
-
+-->
 
 
 

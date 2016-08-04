@@ -24,6 +24,11 @@ Route::get('/search', 'Search\SearchController@index'); //default search view
 Route::post('/search', 'Search\SearchController@filter'); //display filter data
 
 
+/***********Get all country data from https://restcountries.eu/ routes*******************/
+
+Route::post('auth/country', 'Api\AllcountryController@getCountryCode');
+
+/*********** ./get all country data***********************************/
 
 
 

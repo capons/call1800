@@ -2,6 +2,7 @@
  * Created by Urich_notebook_2 on 21.07.2016.
  */
 
+
 var main = (function () {
     doConstruct = function () {
         this.init_callbacks = [];
@@ -106,56 +107,54 @@ var front_page = (function () {
                 }
             });
         },
+
+
     };
     return new doConstruct;
 })();
 
 /* ./fron_page*/
 
+/* auth/register routes  routes js */
+var user_registration = (function () {
+    var doConstruct = function () {
+        main.add_init_callback(this.add_country_phone_code);
+    };
+    doConstruct.prototype = {
+        add_country_phone_code: function () { //show modal to add new manager
+            $('input[name=u_country]').focusout(function() {
+
+                $.ajax({
+                    url: './country',
+                    type: "post",
+                    data: {'name':$('input[name=u_country]').val(), '_token': $('input[name=_token]').val()},
+                    success: function(data){
+                        switch (data.success){       //needed array cell
+                            case true:            //if basket goods quontity response false
+                                $('input[name=f_number]').val('('+data.callingcode+')'); //add country phone code
+                                $('input[name=f_postcode]').val(data.postalcode); //add postal code
+                                break;
+                            case false:        //if basket goods quantity response true go to next step
+
+                        }
+                    },
+                    error: function(data){
+                        var errors = data.responseJSON;
+                       // console.log(errors);
+                        // Render the errors with js ...
+                    }
+                });
+
+            });
+        },
+    };
+    return new doConstruct;
+})();
+/* ./*/
 
 
-//Stripe payment config
-// This identifies your website in the createToken call below
 
 
-jQuery(function($) {
-    $('#payment-form').submit(function(event) {
-        var $form = $(this);
 
-        // Before passing data to Stripe, trigger Parsley Client side validation
-        $form.parsley().subscribe('parsley:form:validate', function(formInstance) {
-            formInstance.submitEvent.preventDefault();
-            return false;
-        });
-
-        // Disable the submit button to prevent repeated clicks
-        $form.find('#submitBtn').prop('disabled', true);
-
-        Stripe.card.createToken($form, stripeResponseHandler);
-
-        // Prevent the form from submitting with the default action
-        return false;
-    });
-});
-
-function stripeResponseHandler(status, response) {
-    var $form = $('#payment-form');
-
-    if (response.error) {
-        // Show the errors on the form
-        $form.find('.payment-errors').text(response.error.message);
-        $form.find('.payment-errors').addClass('alert alert-danger');
-        $form.find('#submitBtn').prop('disabled', false);
-        $('#submitBtn').button('reset');
-    } else {
-        // response contains id and card, which contains additional card details
-        var token = response.id;
-        // Insert the token into the form so it gets submitted to the server
-        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-        // and submit
-        $form.get(0).submit();
-    }
-};
-// ./Stripe payment config
 
 

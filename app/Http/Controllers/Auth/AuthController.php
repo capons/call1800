@@ -56,22 +56,27 @@ class AuthController extends Controller
             'l_name.required' => 'Last Name is required',
             'email.required' => 'Email is required',
             'f_number.required' => 'Number is required',
+            'f_postcode.integer' => 'Postal code need to be integer',
             'u_address.required' => 'Address is required',
             'u_city.required' => 'City is required',
             'u_state.required' => 'State is required',
             'u_country.required' => 'Country is required',
             'u_pass.required' => 'Password is required',
+            'u_pass_re.requires' => 'Confirm password is required',
+            'u_pass_re.same' => 'Confirm password is incorrectly',
         ];
         return Validator::make($data, [   //validation registration form
             'f_name' => 'required|max:50',
             'l_name' => 'required|max:50',
             'email' => 'required|email|max:100|unique:users',
             'f_number' => 'required|max:100',
+            'f_postcode' => 'integer',
             'u_address' => 'required|max:100',
             'u_city' => 'required|max:100',
             'u_state' => 'required|max:100',
             'u_country' => 'required|max:100',
             'u_pass' => 'required|max:100|min:5',
+            'u_pass_re' => 'required|same:u_pass',
         ],$messages);
     }
 
@@ -158,6 +163,7 @@ class AuthController extends Controller
             'last_name' => $data['l_name'],
             'email' => $data['email'],
             'phone_number' => $data['f_number'],
+            'postal_code' => $data['f_postcode'],
             'country' => $data['u_country'],
             'state' => $data['u_state'],
             'city' => $data['u_city'],

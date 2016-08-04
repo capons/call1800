@@ -57,23 +57,8 @@
                                             </div>
                                         </div>
 
-                                        <!-- Phone input-->
-                                        <div class="form-group required">
-                                            <label class="col-md-4 control-label">Phone Number <sup>*</sup></label>
 
-                                            <div class="col-md-6">
-                                                <input name="f_number" placeholder="Phone Number" class="form-control input-md" value="3700224673" type="text">
-                                            </div>
-                                        </div>
 
-                                        <!-- Address input-->
-                                        <div class="form-group required">
-                                            <label class="col-md-4 control-label">Address <sup>*</sup></label>
-
-                                            <div class="col-md-6">
-                                                <input name="u_address" placeholder="Address" class="form-control input-md" value="some user address"  type="text">
-                                            </div>
-                                        </div>
 
 
                                         <!-- Country input-->
@@ -81,9 +66,10 @@
                                             <label class="col-md-4 control-label">Country <sup>*</sup></label>
 
                                             <div class="col-md-6">
-                                                <!--
+
                                                 <input name="u_country" placeholder="Country" class="form-control input-md" value="Some Country" type="text">
-                                                -->
+
+                                                <!--
                                                 <select name="u_country" class="form-control">
                                                     <option>USA</option>
                                                     <option>Canada</option>
@@ -91,24 +77,16 @@
                                                     <option>France</option>
                                                     <option>Italy</option>
                                                 </select>
+                                                -->
                                             </div>
                                         </div>
 
-                                        <!-- City input-->
+                                        <!-- Post code input-->
                                         <div class="form-group required">
-                                            <label class="col-md-4 control-label">City <sup>*</sup></label>
+                                            <label class="col-md-4 control-label">Postal code <sup>*</sup></label>
 
                                             <div class="col-md-6">
-                                                <!--
-                                                <input name="u_city" placeholder="City" class="form-control input-md" value="Some city" type="text">
-                                                -->
-                                                <select name="u_city" class="form-control">
-                                                    <option>City 1</option>
-                                                    <option>City 2</option>
-                                                    <option>City 3</option>
-                                                    <option>City 4</option>
-                                                    <option>City 5</option>
-                                                </select>
+                                                <input name="f_postcode" placeholder="Postal code" class="form-control input-md" value="" type="text">
                                             </div>
                                         </div>
 
@@ -121,8 +99,43 @@
                                             </div>
                                         </div>
 
+                                        <!-- City input-->
+                                        <div class="form-group required">
+                                            <label class="col-md-4 control-label">City <sup>*</sup></label>
+
+                                            <div class="col-md-6">
+
+                                                <input name="u_city" placeholder="City" class="form-control input-md" value="Some city" type="text">
+                                                <!--
+                                                <select name="u_city" class="form-control">
+                                                    <option>City 1</option>
+                                                    <option>City 2</option>
+                                                    <option>City 3</option>
+                                                    <option>City 4</option>
+                                                    <option>City 5</option>
+                                                </select>
+                                                -->
+                                            </div>
+                                        </div>
 
 
+                                        <!-- Address input-->
+                                        <div class="form-group required">
+                                            <label class="col-md-4 control-label">Address <sup>*</sup></label>
+
+                                            <div class="col-md-6">
+                                                <input name="u_address" placeholder="Address" class="form-control input-md" value="some user address"  type="text">
+                                            </div>
+                                        </div>
+
+                                        <!-- Phone input-->
+                                        <div class="form-group required">
+                                            <label class="col-md-4 control-label">Phone Number <sup>*</sup></label>
+
+                                            <div class="col-md-6">
+                                                <input name="f_number" placeholder="Phone Number" class="form-control input-md" value="" type="text">
+                                            </div>
+                                        </div>
 
 
                                         <div class="form-group required">
@@ -130,6 +143,16 @@
 
                                             <div class="col-md-6">
                                                 <input type="password" name="u_pass" class="form-control" id="inputPassword3" placeholder="Password">
+
+                                                <p class="help-block">At least 5 characters <!--Example block-level help text here.--></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group required">
+                                            <label for="inputPassword3" class="col-md-4 control-label">Confirm password <sup>*</sup> </label>
+
+                                            <div class="col-md-6">
+                                                <input type="password" name="u_pass_re" class="form-control" placeholder="Confirm Password">
 
                                                 <p class="help-block">At least 5 characters <!--Example block-level help text here.--></p>
                                             </div>

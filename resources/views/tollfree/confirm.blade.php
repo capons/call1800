@@ -16,7 +16,7 @@
                 successClass: 'has-success'
             };
         </script>
-        <script src="http://parsleyjs.org/dist/parsley.js"></script>
+        <script src="http://parsleyjs.org/dist/parsley.js"></script> <!--Library for input form validate -->
 
 
 
