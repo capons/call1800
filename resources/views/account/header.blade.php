@@ -18,28 +18,32 @@
                             <span><?php echo Auth::user()->name; ?></span> <i class="icon-user fa"></i> <i
                                     class=" icon-down-open-big fa"></i></a>
                         <ul class="dropdown-menu user-menu">
+                            <!--
                             <li class="active">
                                 <a href="#"><i class="icon-home"></i> Personal Home</a>
                             </li>
+                            -->
 
                             <li>
-                                <a href="#"><i class="icon-th-thumb"></i> My Toll Free Number </a>
+                                <a href="#"><i class="glyphicon glyphicon-pencil"></i>Edit profile</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon-heart"></i> Favourite Toll Free Number </a>
+                                <a href="#"><i class="glyphicon glyphicon-refresh"></i>Change password</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon-star-circled"></i> Saved search</a>
+                                <a href="#"><i class="glyphicon glyphicon-book"></i>Help</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon-folder-close"></i> Archived Toll Free Number</a>
+                                <a href="#"><i class="glyphicon glyphicon-wrench"></i>Report a problem</a>
                             </li>
+                            <!--
                             <li>
                                 <a href="#"><i class="icon-hourglass"></i> Pending approval </a>
                             </li>
                             <li>
                                 <a href="#"><i class=" icon-money "></i> Payment history </a>
                             </li>
+                            -->
                         </ul>
                     </li>
                     <li style="border-left:none;" class="postadd"><a style="padding: 12px 0px;" class="btn btn-block   btn-border btn-post btn-danger" href="{{url('toll/reg')}}">Post Free Add</a></li>

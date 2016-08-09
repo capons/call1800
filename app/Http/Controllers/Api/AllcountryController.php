@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 class AllcountryController extends Controller
 {
     private $redirectTo = 'auth/register';
+    private $all_country = array();
     /**
      * Display a listing of the resource.
      *
@@ -88,8 +89,11 @@ class AllcountryController extends Controller
         //
     }
 
+
+
     //get country phone code
-    public  function getCountryCode(Request $request){
+    public  function getCountryCode(Request $request)
+    {
         if ($request->isMethod('post')){
             // Display text here
             $messages = [ //validation message
@@ -112,10 +116,7 @@ class AllcountryController extends Controller
             $result = file_get_contents('https://restcountries.eu/rest/v1/name/'.$country_name);
             if(!empty($result)) {
                 $result = json_decode($result, true);
-              //  echo $result[0]['callingCodes'][0];
-              //  echo '<pre>';
-              //  print_r($result);
-             //   echo '</pre>';
+
 
 
                 return response()->json([
@@ -136,13 +137,6 @@ class AllcountryController extends Controller
 
         } else {
             return redirect($this->redirectTo);
-
         }
-
-
-
-
-
-
     }
 }

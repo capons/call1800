@@ -18,8 +18,14 @@ Route::get('getcancel', 'Payment\PaypalController@getCancel');
 Route::post('spaycheck','Payment\StripeController@store');                //pay via Stripe
 /*** ./Stripe routes***/
 
+/** Register Toll Free Number **/
 Route::get('toll/reg', 'Tollfree\RegistertollController@index');     //registr toll free number
 Route::post('toll/reg', 'Tollfree\RegistertollController@store');
+/**  ./ Register Toll Free Number **/
+
+/** get all State Toll Free Number **/
+Route::post('toll/buy/tfn','Tollfree\BuytollController@getStateTFN');
+/** **/
 
 
 

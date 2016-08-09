@@ -27,18 +27,50 @@
                                     </div>
 
                                 </div>
-                                <label style="margin-top: 10px" class="col-md-6 control-label" for="selectbasic">Select Number Prefix</label>
+                                <div style="margin-bottom: 30px" class="col-md-12">
+                                    <form> <!--form send via ajax accountpage -->
+                                        {!! csrf_field() !!}
 
-                                <div class="col-md-6">
-                                    <select id="tollfree-prefix" name="s_tf_number"  class="form-control">
-                                        <option value="">Select Toll Free Number</option>
-                                        <option value="1800">1800</option>
-                                        <option value="1888">1888</option>
-                                        <option value="1866">1866</option>
-                                        <option value="1877">1877</option>
-                                        <option value="1855">1855</option>
-                                        <option value="1844">1844</option>
-                                    </select>
+                                        <label style="margin-top: 10px" class="col-md-6 control-label" >Select State</label>
+
+                                        <div class="col-md-6">
+                                            <select id="tollfree-state" name="s_tf_state"  class="form-control">
+                                                <option value="">Select State</option>
+                                                @if(isset($tfn_state))
+                                                        @if(count($tfn_state) > 0)
+                                                            @foreach($tfn_state as $row)
+                                                                <option value="{{$row}}">{{$row}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                @endif
+                                                <!--
+                                                <option value="1800">1800</option>
+                                                <option value="1888">1888</option>
+                                                <option value="1866">1866</option>
+                                                <option value="1877">1877</option>
+                                                <option value="1855">1855</option>
+                                                <option value="1844">1844</option>
+                                                -->
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-12">
+                                    <label style="margin-top: 10px" class="col-md-6 control-label" for="selectbasic">Select Toll Free Number</label>
+
+                                    <div class="col-md-6">
+                                        <select id="tollfree-prefix" name="s_tf_number"  class="form-control">
+                                            <option value="">Select Toll Free Number</option>
+                                            <!--
+                                            <option value="1800">1800</option>
+                                            <option value="1888">1888</option>
+                                            <option value="1866">1866</option>
+                                            <option value="1877">1877</option>
+                                            <option value="1855">1855</option>
+                                            <option value="1844">1844</option>
+                                            -->
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!-- ./select Toll Free Number Prefix-->

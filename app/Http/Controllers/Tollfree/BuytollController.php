@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\DomCrawler\Form;
+use App\Library\Swagger\Swagger; //Toll Free Number API Class load
 
 
 class BuytollController extends Controller
@@ -40,7 +41,49 @@ class BuytollController extends Controller
      */
     public function index()
     {
-        return view('tollfree.buytoll');
+
+        $swagger = new Swagger();
+
+        $tfn_state = $swagger->getState(); //all Toll Free Number available State
+
+        return view('tollfree.buytoll',['tfn_state' => $tfn_state]);
+    }
+
+    public function getStateTFN(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            // Display text here
+            $messages = [ //validation message
+                'state.required' => 'Select state prefix!'
+            ];
+            //$validator = Validator::make(Input::all(), $rules,$messages);
+            $validator = Validator::make($request->all(), [
+                'state' => 'required',
+            ], $messages);
+            if ($validator->fails()) {
+                $errors = $validator->errors(); //error send to ajax
+                $errors = json_decode($errors);
+                return response()->json([
+                    'success' => false,
+                    'message' => $errors
+                ], 200);
+                die();
+            }
+            $state_prefix = Input::get('state');
+            $swagger = new Swagger();
+            $tfn_number = $swagger->getTFN($state_prefix); //all State Toll Free Number
+            if (!empty($tfn_number)) {
+                return response()->json([
+                    'success' => true,
+                    'state_tfn' => $tfn_number,
+                ], 200);
+                die();
+
+            }
+        } else {
+            return redirect('toll/buy');
+        }
+
     }
 
     /**

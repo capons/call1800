@@ -28,9 +28,48 @@ $(document).ready(function () {
 /* tollfree.routes.php  routes js */
 var toll_free_number = (function () {
     var doConstruct = function () {
-        main.add_init_callback(this.add_input_prefix);
+        main.add_init_callback(this.add_input_prefix); //add phone number to form
+        main.add_init_callback(this.add_state_tfn_number); //add State phone Toll Free Number
     };
     doConstruct.prototype = {
+        add_state_tfn_number: function () {
+            $('#tollfree-state').change(function(){
+               var state_prefix =  $('#tollfree-state').val(); //send state prefix to resive TFN number
+                if(state_prefix.length > 0){
+                    $.ajax({
+                        url: './buy/tfn',    //BuytollController
+                        type: "post",
+                        data: {'state':state_prefix, '_token': $('input[name=_token]').val()},
+                        success: function(data){
+                            switch (data.success){       //needed array cell
+                                case true:            //if respons have Toll Free Number
+                                    var add_option = '<option value='+null+'>Select Toll Free Number</option>';
+
+                                    $.each(data.state_tfn, function (index, value) { //each array
+                                        add_option +='<option value='+value+'>'+value+'</option>';
+                                    });
+                                    if(add_option.length > 0) {
+                                        $('#tollfree-prefix').html(add_option); //add input options
+                                    }
+                                    break;
+                                case false:  //if return false (if validation == true)
+                                    console.log(data.message);
+                            }
+                        },
+                        error: function(data){
+                            var errors = data.responseJSON;
+                            // console.log(errors);
+                            // Render the errors with js ...
+                        }
+                    });
+                }
+
+
+
+
+
+            });
+        },
         add_input_prefix: function () { //Buy Toll Free number prefix select => add value to form input
             $('#tollfree-prefix').change(function(){
                 var num_prefix = $('#tollfree-prefix').val();
@@ -122,12 +161,11 @@ var user_registration = (function () {
     };
     doConstruct.prototype = {
         add_country_phone_code: function () { //show modal to add new manager
-            $('input[name=u_country]').focusout(function() {
-
+            $('select[name=u_country]').change(function() {
                 $.ajax({
                     url: './country',
                     type: "post",
-                    data: {'name':$('input[name=u_country]').val(), '_token': $('input[name=_token]').val()},
+                    data: {'name':$('select[name=u_country]').val(), '_token': $('input[name=_token]').val()},
                     success: function(data){
                         switch (data.success){       //needed array cell
                             case true:            //if basket goods quontity response false

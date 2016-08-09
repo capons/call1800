@@ -66,18 +66,21 @@
                                             <label class="col-md-4 control-label">Country <sup>*</sup></label>
 
                                             <div class="col-md-6">
-
-                                                <input name="u_country" placeholder="Country" class="form-control input-md" value="Some Country" type="text">
-
                                                 <!--
-                                                <select name="u_country" class="form-control">
-                                                    <option>USA</option>
-                                                    <option>Canada</option>
-                                                    <option>Ukraine</option>
-                                                    <option>France</option>
-                                                    <option>Italy</option>
-                                                </select>
+                                                <input name="u_country" placeholder="Country" class="form-control input-md" value="Some Country" type="text">
                                                 -->
+
+                                                <select name="u_country" class="form-control">
+                                                    <option></option>
+                                                    @if(isset($country))
+                                                        @if(count($country) > 0)
+                                                            @foreach($country as $key)
+                                                                <option>{{$key}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                </select>
+
                                             </div>
                                         </div>
 
